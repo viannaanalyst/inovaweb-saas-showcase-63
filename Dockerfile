@@ -10,7 +10,7 @@ COPY package*.json ./
 COPY bun.lockb* ./
 
 # Instalar dependências
-RUN npm ci --only=production
+RUN npm install --omit=dev
 
 # Build stage
 FROM base AS builder
@@ -18,6 +18,9 @@ WORKDIR /app
 
 # Copiar código fonte
 COPY . .
+
+# Instalar todas as dependências (incluindo dev) para o build
+RUN npm install
 
 # Build da aplicação
 RUN npm run build
