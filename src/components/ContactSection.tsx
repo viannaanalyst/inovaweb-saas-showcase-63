@@ -31,7 +31,7 @@ export function ContactSection() {
     try {
       setLoading(true);
       const response = await fetch(
-        "https://n8n-n8n.pqvcji.easypanel.host/webhook-test/form-lead",
+        "https://n8n-n8n.pqvcji.easypanel.host/webhook/form-lead",
         {
           method: "POST",
           headers: {
