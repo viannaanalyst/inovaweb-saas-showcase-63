@@ -7,7 +7,6 @@ import { ThemeProvider } from "@/providers/ThemeProvider";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Sobre from "./pages/Sobre";
-import Tecnologias from "./pages/Tecnologias";
 import Contato from "./pages/Contato";
 import WhatsAppRedirect from "./pages/WhatsAppRedirect";
 import Qualificacao from "./pages/Qualificacao";
@@ -26,7 +25,6 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
             <Route path="/sobre" element={<Sobre />} />
-            <Route path="/tecnologias" element={<Tecnologias />} />
             <Route path="/contato" element={<Contato />} />
             <Route path="/whats" element={<WhatsAppRedirect />} />
             <Route path="/qualificacao" element={<Qualificacao />} />

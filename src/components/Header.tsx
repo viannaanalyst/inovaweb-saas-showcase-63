@@ -35,13 +35,7 @@ export function Header() {
               Sobre a empresa
               <span className="absolute left-0 bottom-0 w-full h-0.5 bg-gradient-brand scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
             </a>
-            <a
-              href="#tecnologias"
-              className="text-foreground hover:text-foreground font-inter font-medium relative group px-4 py-2 block transition-colors duration-200"
-            >
-              Tecnologias utilizadas
-              <span className="absolute left-0 bottom-0 w-full h-0.5 bg-gradient-brand scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-            </a>
+            
             <a
               href="#contato"
               className="text-foreground hover:text-foreground font-inter font-medium relative group px-4 py-2 block transition-colors duration-200"

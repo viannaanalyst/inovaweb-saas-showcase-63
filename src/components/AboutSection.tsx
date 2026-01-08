@@ -32,18 +32,18 @@ export function AboutSection() {
           >
             <div className="space-y-4 text-card-foreground font-inter leading-relaxed text-base sm:text-lg">
               <p>
-                A <strong className="text-foreground">InovaWeb</strong> é uma empresa especializada no desenvolvimento de soluções SaaS modernas e escaláveis. 
-                Nosso objetivo é transformar ideias em produtos digitais que realmente façam diferença na vida das pessoas e impulsionem negócios.
+                A <strong className="text-foreground">InovaWeb</strong> é especializada em automação de atendimento com IA via WhatsApp para clínicas.
+                Nosso foco é eliminar filas, organizar agendamentos e oferecer uma experiência moderna ao paciente.
               </p>
               
               <p>
-                Acreditamos em tecnologia acessível, design intuitivo e performance de alto nível para atender empresas de todos os portes. 
-                Trabalhamos com as mais modernas tecnologias do mercado para garantir soluções robustas e futuro-proof.
+                Implementamos fluxos inteligentes de triagem, confirmação, lembretes e pós-consulta,
+                integrando com agendas e sistemas existentes quando necessário, sempre com segurança e escalabilidade.
               </p>
               
               <p>
-                Nossa missão é democratizar o acesso à tecnologia, oferecendo sistemas que automatizam processos, 
-                aumentam a produtividade e geram resultados mensuráveis para nossos clientes.
+                Nossa missão é liberar sua equipe das tarefas repetitivas, aumentar a conversão,
+                reduzir o no-show e elevar a satisfação dos pacientes com atendimento 24/7.
               </p>
             </div>
           </motion.div>
@@ -59,7 +59,7 @@ export function AboutSection() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="text-center">
                     <div className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
-                      50+
+                      5+
                     </div>
                     <div className="text-muted-foreground text-sm sm:text-base">
                       Projetos entregues
@@ -68,7 +68,7 @@ export function AboutSection() {
                   
                   <div className="text-center">
                     <div className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
-                      3+
+                      1+
                     </div>
                     <div className="text-muted-foreground text-sm sm:text-base">
                       Anos de experiência
@@ -77,7 +77,7 @@ export function AboutSection() {
                   
                   <div className="text-center">
                     <div className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
-                      100%
+                      95%
                     </div>
                     <div className="text-muted-foreground text-sm sm:text-base">
                       Clientes satisfeitos

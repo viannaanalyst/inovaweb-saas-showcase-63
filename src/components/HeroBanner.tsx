@@ -3,18 +3,41 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
-// Declaração global para TypeScript
+type VantaNetOptions = {
+  el: HTMLElement | null;
+  mouseControls: boolean;
+  touchControls: boolean;
+  gyroControls: boolean;
+  minHeight: number;
+  minWidth: number;
+  scale: number;
+  scaleMobile: number;
+  color: number;
+  backgroundColor: number;
+  points: number;
+  maxDistance: number;
+  spacing: number;
+};
+
+type VantaInstance = {
+  destroy: () => void;
+};
+
+type Vanta = {
+  NET: (options: VantaNetOptions) => VantaInstance;
+};
+
 declare global {
   interface Window {
-    VANTA: any;
+    VANTA?: Vanta;
   }
 }
 
 export function HeroBanner() {
-  const vantaRef = useRef(null);
+  const vantaRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    let vantaEffect;
+    let vantaEffect: VantaInstance | undefined;
     
     if (vantaRef.current && window.VANTA) {
       vantaEffect = window.VANTA.NET({
@@ -68,8 +91,8 @@ export function HeroBanner() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
         >
-          Sistemas web personalizados <br className="hidden sm:block" /> 
-          para impulsionar seu negócio
+          Atendimento no WhatsApp com IA <br className="hidden sm:block" /> 
+          para clínicas, 24h por dia
         </motion.h1>
 
         {/* Subheadline */}
@@ -79,7 +102,7 @@ export function HeroBanner() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
         >
-          Automatize seus processos, economize tempo e aumente seus resultados com soluções sob medida.
+          Automatize agendamentos, triagem, confirmações e lembretes com IA. Reduza filas no WhatsApp e não perca pacientes fora do horário.
         </motion.p>
 
         {/* Botão CTA */}
@@ -93,13 +116,10 @@ export function HeroBanner() {
             size="default"
             className="text-base font-medium px-6 py-3 h-auto rounded-lg hover:scale-[1.02] transition-transform duration-200"
             onClick={() => {
-              const contactSection = document.querySelector('#contato');
-              if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth' });
-              }
+              window.location.href = "/whats";
             }}
           >
-            Solicite seu sistema agora
+            Falar no WhatsApp agora
           </Button>
         </motion.div>
       </motion.div>

@@ -18,7 +18,6 @@ export function InstitutionalHeader() {
 
   const menuItems = [
     { label: "Sobre mim", id: "sobre-mim" },
-    { label: "Tecnologias utilizadas", id: "tecnologias" },
     { label: "Contato", id: "contato" }
   ];
 

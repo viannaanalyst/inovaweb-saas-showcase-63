@@ -1,19 +1,19 @@
 import { motion } from "framer-motion";
-import { CheckCircle, Zap, Palette, TrendingUp } from "lucide-react";
+import { CheckCircle, Zap, Palette, TrendingUp, MessageCircle, Workflow, CalendarDays } from "lucide-react";
 
 export function PainPointSection() {
   const painPoints = [
     {
       icon: <TrendingUp className="h-6 w-6 text-[#6A11CB]" />,
-      text: "Performance garantida – sistemas leves e sem travamentos."
+      text: "Filas e demora no WhatsApp – atendimento lento e manual."
     },
     {
       icon: <Zap className="h-6 w-6 text-[#6A11CB]" />,
-      text: "Automação inteligente – menos trabalho manual, mais resultados."
+      text: "Agendamentos manuais – erros e perda de horários."
     },
     {
       icon: <Palette className="h-6 w-6 text-[#6A11CB]" />,
-      text: "Design moderno e intuitivo – fácil de usar, rápido de aprender."
+      text: "Sem confirmação – mais faltas e cancelamentos."
     }
   ];
 
@@ -40,9 +40,9 @@ export function PainPointSection() {
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
               viewport={{ once: true }}
             >
-              Cansado de sistemas lentos e que só te fazem{" "}
+              Seu atendimento no WhatsApp está te fazendo{" "}
               <span className="bg-gradient-to-r from-[#6A11CB] to-[#2574FC] bg-clip-text text-transparent">
-                perder tempo?
+                perder pacientes?
               </span>
             </motion.h2>
 
@@ -54,7 +54,7 @@ export function PainPointSection() {
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
               viewport={{ once: true }}
             >
-              Muitos negócios ainda sofrem com softwares ultrapassados, travamentos constantes e processos manuais que desperdiçam tempo e dinheiro. Nós criamos sistemas modernos, rápidos e seguros, pensados para aumentar a produtividade e escalar o seu negócio.
+              Clínicas ainda sofrem com atendimento manual pelo WhatsApp: demora nas respostas, agendamentos confusos e falta de confirmação. Implementamos automações com IA que organizam o fluxo, reduzem no-show e elevam a experiência do paciente.
             </motion.p>
 
             {/* Benefits List */}
@@ -101,65 +101,39 @@ export function PainPointSection() {
               <div className="relative bg-gradient-to-br from-card/50 to-card/30 backdrop-blur-sm rounded-2xl p-8 border border-border/50">
                 {/* Tech Stack Visualization */}
                 <div className="space-y-4">
-                  {/* Fast System Representation */}
                   <motion.div 
-                    className="flex items-center gap-3 p-3 bg-gradient-to-r from-green-500/10 to-green-400/10 rounded-lg border border-green-500/20"
-                    animate={{ 
-                      scale: [1, 1.02, 1],
-                      opacity: [0.8, 1, 0.8]
-                    }}
-                    transition={{ 
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
+                    className="flex items-center gap-3 p-3 bg-gradient-to-r from-emerald-500/10 to-teal-400/10 rounded-lg border border-emerald-500/20"
+                    animate={{ scale: [1, 1.02, 1], opacity: [0.8, 1, 0.8] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                   >
-                    <TrendingUp className="h-5 w-5 text-green-400" />
+                    <MessageCircle className="h-5 w-5 text-emerald-400" />
                     <div className="flex-1">
-                      <div className="h-2 bg-gradient-to-r from-green-400 to-green-500 rounded-full" />
-                      <span className="text-xs text-green-400 font-medium">Sistema Otimizado</span>
+                      <div className="h-2 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full" />
+                      <span className="text-xs text-emerald-400 font-medium">WhatsApp com IA</span>
                     </div>
                   </motion.div>
 
-                  {/* Automation Representation */}
                   <motion.div 
-                    className="flex items-center gap-3 p-3 bg-gradient-to-r from-blue-500/10 to-blue-400/10 rounded-lg border border-blue-500/20"
-                    animate={{ 
-                      scale: [1, 1.02, 1],
-                      opacity: [0.8, 1, 0.8]
-                    }}
-                    transition={{ 
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: 0.5
-                    }}
+                    className="flex items-center gap-3 p-3 bg-gradient-to-r from-blue-500/10 to-sky-400/10 rounded-lg border border-blue-500/20"
+                    animate={{ scale: [1, 1.02, 1], opacity: [0.8, 1, 0.8] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
                   >
-                    <Zap className="h-5 w-5 text-blue-400" />
+                    <Workflow className="h-5 w-5 text-blue-400" />
                     <div className="flex-1">
-                      <div className="h-2 bg-gradient-to-r from-blue-400 to-blue-500 rounded-full" />
-                      <span className="text-xs text-blue-400 font-medium">Automação Ativa</span>
+                      <div className="h-2 bg-gradient-to-r from-blue-400 to-sky-500 rounded-full" />
+                      <span className="text-xs text-blue-400 font-medium">Fluxos n8n</span>
                     </div>
                   </motion.div>
 
-                  {/* Design Representation */}
                   <motion.div 
-                    className="flex items-center gap-3 p-3 bg-gradient-to-r from-purple-500/10 to-purple-400/10 rounded-lg border border-purple-500/20"
-                    animate={{ 
-                      scale: [1, 1.02, 1],
-                      opacity: [0.8, 1, 0.8]
-                    }}
-                    transition={{ 
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: 1
-                    }}
+                    className="flex items-center gap-3 p-3 bg-gradient-to-r from-purple-500/10 to-fuchsia-400/10 rounded-lg border border-purple-500/20"
+                    animate={{ scale: [1, 1.02, 1], opacity: [0.8, 1, 0.8] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                   >
-                    <Palette className="h-5 w-5 text-purple-400" />
+                    <CalendarDays className="h-5 w-5 text-purple-400" />
                     <div className="flex-1">
-                      <div className="h-2 bg-gradient-to-r from-purple-400 to-purple-500 rounded-full" />
-                      <span className="text-xs text-purple-400 font-medium">Interface Moderna</span>
+                      <div className="h-2 bg-gradient-to-r from-purple-400 to-fuchsia-500 rounded-full" />
+                      <span className="text-xs text-purple-400 font-medium">Agenda Integrada</span>
                     </div>
                   </motion.div>
                 </div>
@@ -182,7 +156,7 @@ export function PainPointSection() {
                 >
                   <CheckCircle className="h-8 w-8 text-[#6A11CB] mx-auto mb-2" />
                   <span className="text-sm font-medium text-[#6A11CB]">
-                    Produtividade +300%
+                    Atendimento 24/7
                   </span>
                 </motion.div>
               </div>

@@ -19,7 +19,6 @@ export function MobileMenu({ className }: MobileMenuProps) {
   const navigationItems = [
     { label: "Home", path: "/" },
     { label: "Sobre a empresa", path: "/sobre" },
-    { label: "Tecnologias utilizadas", path: "/tecnologias" },
     { label: "Contato", path: "/contato" },
   ];
 

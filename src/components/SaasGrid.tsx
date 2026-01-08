@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, MessageCircle, Bot, CalendarDays, Bell, ClipboardList, Workflow, Users } from "lucide-react";
+import type { ElementType } from "react";
 import { motion } from "framer-motion";
 import { 
   Carousel, 
@@ -15,23 +16,36 @@ import saasFinancas from "@/assets/saas-financas.jpg";
 import saasMarketing from "@/assets/saas-marketing.jpg";
 import saasDelivery from "@/assets/saas-delivery.jpg";
 
-const saasData = [{
-  name: "SaaS Agendamentos Pro",
-  description: "Sistema completo para gestão de agendamentos em salões de beleza e spas. Permite escolher profissionais, serviços, e visualizar relatórios de desempenho. Design clean e fácil de usar, ideal para pequenos negócios que buscam automatizar seu atendimento.",
-  imageUrl: saasAgendamentos,
-}, {
-  name: "SaaS Finanças Smart",
-  description: "Ferramenta de controle financeiro para pequenas empresas. Gera relatórios automáticos de fluxo de caixa, controla despesas e integra com contas bancárias. Interface moderna para tomada de decisões rápidas e assertivas.",
-  imageUrl: saasFinancas,
-}, {
-  name: "SaaS Marketing Fácil",
-  description: "Plataforma para criação de campanhas de marketing automatizadas. Envio de e-mails segmentados, agendamento de posts em redes sociais e relatórios de engajamento, tudo em um só lugar.",
-  imageUrl: saasMarketing,
-}, {
-  name: "SaaS Delivery Connect",
-  description: "Solução para restaurantes e lojas que desejam gerenciar entregas. Permite rastreamento em tempo real, integração com motoboys parceiros e relatórios de performance das entregas.",
-  imageUrl: saasDelivery,
-}];
+const saasData = [
+  {
+    name: "Agendamento automatizado",
+    description:
+      "Pacientes escolhem especialidade e horário direto no WhatsApp. Integração com agenda e bloqueio de conflitos.",
+    imageUrl: saasAgendamentos,
+    variant: "agendamento",
+  },
+  {
+    name: "Triagem e dúvidas com IA",
+    description:
+      "Respostas inteligentes para FAQs, orientações pré-consulta e encaminhamentos sem sobrecarregar a equipe.",
+    imageUrl: saasMarketing,
+    variant: "triagem",
+  },
+  {
+    name: "Confirmação e lembretes",
+    description:
+      "Mensagens automáticas de confirmação, lembretes e reengajamento. Redução de faltas e cancelamentos.",
+    imageUrl: saasFinancas,
+    variant: "confirmacao",
+  },
+  {
+    name: "Pós-consulta e satisfação",
+    description:
+      "Pesquisa de satisfação, instruções pós-consulta e retorno programado para fidelização.",
+    imageUrl: saasDelivery,
+    variant: "pos",
+  },
+];
 
 export function SaasGrid() {
   const [api, setApi] = useState<CarouselApi>();
@@ -41,6 +55,77 @@ export function SaasGrid() {
   const progressRef = useRef<number>(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
+
+  const Step = ({ icon: Icon, label, badge }: { icon: ElementType; label: string; badge?: string }) => (
+    <div className="flex items-center gap-2 px-3 py-2 rounded-lg border bg-gradient-to-r from-card/60 to-card/40">
+      <div className="w-8 h-8 rounded-md flex items-center justify-center bg-muted/60">
+        <Icon className="h-4 w-4 text-foreground" />
+      </div>
+      <span className="text-sm font-medium text-card-foreground">{label}</span>
+      {badge && <span className="ml-auto text-[11px] px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30">{badge}</span>}
+    </div>
+  );
+
+  const Connector = () => <div className="h-0.5 w-10 mx-2 bg-gradient-to-r from-[#6A11CB] to-[#2575FC] rounded-full" />;
+
+  const renderFlowDiagram = (variant: string) => {
+    if (variant === "agendamento") {
+      return (
+        <div className="relative rounded-xl border border-border p-4 bg-card">
+          <div className="flex items-center">
+            <Step icon={MessageCircle} label="WhatsApp" />
+            <Connector />
+            <Step icon={Bot} label="Triagem IA" badge="n8n" />
+            <Connector />
+            <Step icon={CalendarDays} label="Agenda" />
+            <Connector />
+            <Step icon={ClipboardList} label="Confirmação" />
+          </div>
+        </div>
+      );
+    }
+    if (variant === "triagem") {
+      return (
+        <div className="relative rounded-xl border border-border p-4 bg-card">
+          <div className="flex items-center">
+            <Step icon={MessageCircle} label="WhatsApp" />
+            <Connector />
+            <Step icon={Bot} label="NLP/FAQ" badge="n8n" />
+            <Connector />
+            <Step icon={Users} label="Atendimento humano" />
+          </div>
+        </div>
+      );
+    }
+    if (variant === "confirmacao") {
+      return (
+        <div className="relative rounded-xl border border-border p-4 bg-card">
+          <div className="flex items-center">
+            <Step icon={CalendarDays} label="Agendamento" />
+            <Connector />
+            <Step icon={ClipboardList} label="Confirmação" badge="n8n" />
+            <Connector />
+            <Step icon={Bell} label="Lembrete" />
+            <Connector />
+            <Step icon={Workflow} label="Reengajamento" />
+          </div>
+        </div>
+      );
+    }
+    return (
+      <div className="relative rounded-xl border border-border p-4 bg-card">
+        <div className="flex items-center">
+          <Step icon={ClipboardList} label="Pós-consulta" />
+          <Connector />
+          <Step icon={Bot} label="Instruções IA" badge="n8n" />
+          <Connector />
+          <Step icon={Workflow} label="Pesquisa" />
+          <Connector />
+          <Step icon={Users} label="Retorno" />
+        </div>
+      </div>
+    );
+  };
 
   useEffect(() => {
     if (!api) {
@@ -106,7 +191,7 @@ export function SaasGrid() {
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
           viewport={{ once: true }}
         >
-          Sistemas desenvolvidos
+          Fluxos de automação para clínicas
         </motion.h2>
         
         {/* Container with clean background */}
@@ -124,7 +209,7 @@ export function SaasGrid() {
                 Autoplay({
                   delay: 10000,
                   stopOnInteraction: false,
-                }) as any,
+                }) as ReturnType<typeof Autoplay>,
               ]}
               opts={{
                 align: "start",
@@ -173,14 +258,8 @@ export function SaasGrid() {
                             <div className="absolute -bottom-2 -right-2 w-1 h-1 bg-[#2574FC] rounded-full animate-pulse delay-600"></div>
                           </div>
                           
-                          {/* Brilho sutil ao redor da imagem */}
                           <div className="absolute inset-0 rounded-xl lg:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-[#6A11CB]/10 via-transparent to-[#2574FC]/10 blur-sm scale-105"></div>
-                          
-                          <img
-                            src={saas.imageUrl}
-                            alt={`Preview de ${saas.name}`}
-                            className="w-full h-auto rounded-xl lg:rounded-2xl shadow-xl lg:shadow-2xl transition-all duration-700 ease-out group-hover:scale-105 group-hover:shadow-[0_20px_40px_rgba(106,17,203,0.3)] relative z-10"
-                          />
+                          {renderFlowDiagram(saas.variant as string)}
                         </div>
                       </motion.div>
                     </motion.div>

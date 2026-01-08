@@ -11,37 +11,37 @@ import { motion } from "framer-motion";
 const technologies = [
   {
     name: "React.js",
-    description: "Framework para interfaces rápidas, dinâmicas e responsivas.",
+    description: "Interfaces para bots e painéis de atendimento em tempo real.",
     icon: Code,
     color: "#61DAFB"
   },
   {
     name: "Node.js", 
-    description: "Ambiente rápido e escalável para back-end eficiente.",
+    description: "Integrações com WhatsApp Business API e orquestração de fluxos.",
     icon: Server,
     color: "#339933"
   },
   {
     name: "Supabase",
-    description: "Banco de dados e autenticação simplificados para SaaS.",
+    description: "Dados de pacientes, agendas e logs de conversas.",
     icon: Database,
     color: "#3ECF8E"
   },
   {
     name: "PostgreSQL",
-    description: "Banco de dados robusto e seguro, ideal para grandes volumes de dados.",
+    description: "Base robusta e segura para histórico e relatórios.",
     icon: Database,
     color: "#336791"
   },
   {
     name: "Tailwind CSS",
-    description: "Framework de CSS para design moderno e responsivo.",
+    description: "Interfaces modernas para triagem e administração.",
     icon: Palette,
     color: "#06B6D4"
   },
   {
     name: "Python",
-    description: "Linguagem versátil usada para automações e análise de dados.",
+    description: "IA e NLP para respostas inteligentes e agendamento automático.",
     icon: Bot,
     color: "#3776AB"
   }

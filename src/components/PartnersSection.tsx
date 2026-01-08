@@ -59,8 +59,8 @@ export function PartnersSection() {
     }
   }, [addScrollAnimation]);
 
-  const plugin = useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: true }) as any
+  const plugin = useRef<ReturnType<typeof Autoplay>>(
+    Autoplay({ delay: 3000, stopOnInteraction: true })
   );
 
   return (

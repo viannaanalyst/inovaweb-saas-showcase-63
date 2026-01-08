@@ -43,7 +43,7 @@ export function Footer() {
               InovaWeb
             </h3>
             <p className="text-muted-foreground font-inter text-sm sm:text-base leading-relaxed">
-              Especializada em soluções modernas e escaláveis para impulsionar seu negócio.
+              Automação de atendimento no WhatsApp com IA para clínicas. Agendamento, triagem, confirmações e lembretes 24/7.
             </p>
           </div>
 
@@ -55,15 +55,15 @@ export function Footer() {
             <div className="space-y-2">
               <div className="flex items-center justify-center md:justify-start gap-2 text-muted-foreground">
                 <Mail className="h-4 w-4" />
-                <span className="text-sm sm:text-base link-hover-gradient">contato@inovaweb.dev</span>
+                <span className="text-sm sm:text-base link-hover-gradient">contato@inovawebtech.com.br</span>
               </div>
               <div className="flex items-center justify-center md:justify-start gap-2 text-muted-foreground">
                 <Phone className="h-4 w-4" />
-                <span className="text-sm sm:text-base link-hover-gradient">(11) 99999-9999</span>
+                <span className="text-sm sm:text-base link-hover-gradient">(22) 98105-5534</span>
               </div>
               <div className="flex items-center justify-center md:justify-start gap-2 text-muted-foreground">
                 <MapPin className="h-4 w-4" />
-                <span className="text-sm sm:text-base">São Paulo, SP</span>
+                <span className="text-sm sm:text-base">Rio de Janeiro - RJ</span>
               </div>
             </div>
           </div>
@@ -75,11 +75,17 @@ export function Footer() {
             </h4>
             <div className="flex justify-center md:justify-start space-x-3">
               <a 
-                href="#" 
+                href="https://wa.me/5522981055534" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center justify-center w-8 h-8 rounded-full bg-[#25D366] hover:scale-110 transition-all duration-300 icon-hover-bounce" 
                 aria-label="WhatsApp"
               >
-                <MessageCircle className="h-4 w-4 text-white" />
+                <img 
+                  src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+                  alt="WhatsApp" 
+                  className="h-4 w-4"
+                />
               </a>
               <a 
                 href="https://instagram.com/inovaweb.tech" 
@@ -91,7 +97,7 @@ export function Footer() {
                 <Instagram className="h-4 w-4 text-white" />
               </a>
               <a 
-                href="#" 
+                href="mailto:contato@inovawebtech.com.br" 
                 className="flex items-center justify-center w-8 h-8 rounded-full bg-[#4285F4] hover:bg-[#3367D6] hover:scale-110 transition-all duration-300 icon-hover-bounce" 
                 aria-label="E-mail"
               >

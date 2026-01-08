@@ -9,43 +9,43 @@ import Autoplay from 'embla-carousel-autoplay';
 const testimonials = [
   {
     id: 1,
-    name: "Juliana Matos",
-    role: "CEO da Agende-se",
+    name: "Dra. Juliana Matos",
+    role: "Gestora de Clínica de Estética",
     avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b605?w=150&h=150&fit=crop&crop=face",
     rating: 5,
-    comment: "Nosso sistema de agendamento ficou muito mais fluido. A InovaWeb entregou agilidade e design impecável. Estamos mais eficientes do que nunca!"
+    comment: "As automações no WhatsApp reduziram em 62% nossas filas. Agendamento e confirmações acontecem 100% no chat, sem sobrecarregar a equipe."
   },
   {
     id: 2,
     name: "Daniel Souza",
-    role: "Fundador da Msgmaster AI",
+    role: "Administrador de Clínica Odontológica",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
     rating: 5,
-    comment: "A automação desenvolvida pela InovaWeb revolucionou nosso atendimento. Inteligência real aplicada com maestria!"
+    comment: "Com IA no WhatsApp, dúvidas comuns são respondidas automaticamente e só chegam casos complexos à equipe. Ganhamos velocidade e qualidade no atendimento."
   },
   {
     id: 3,
     name: "Lucas Andrade",
-    role: "CEO da StartUp TechPro",
+    role: "Coordenador de Agenda Médica",
     avatar: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=150&h=150&fit=crop&crop=face",
     rating: 5,
-    comment: "Desde que começamos a usar os sistemas da InovaWeb, nossa produtividade aumentou drasticamente. Rápido, intuitivo e sem travamentos."
+    comment: "Os lembretes automáticos reduziram faltas e cancelamentos. A confirmação via WhatsApp integra direto na agenda — simples e eficaz."
   },
   {
     id: 4,
     name: "Mariana Ribeiro",
-    role: "Gestora de Operações da BeautyPrime",
+    role: "Diretora de Operações",
     avatar: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=150&h=150&fit=crop&crop=face",
     rating: 5,
-    comment: "Automatizamos vários processos e economizamos horas de trabalho por semana. Excelente suporte e tecnologia de ponta."
+    comment: "Os fluxos em n8n organizam todo o pós-consulta: pesquisa de satisfação e instruções automáticas. Ganho real de tempo para o time."
   },
   {
     id: 5,
     name: "Fernando Costa",
-    role: "Diretor Comercial da SmartLog",
+    role: "Gestor de Atendimento",
     avatar: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=150&h=150&fit=crop&crop=face",
     rating: 5,
-    comment: "Sistema muito estável e com ótima performance. Trouxe mais controle e agilidade para nossa operação."
+    comment: "A jornada no WhatsApp ficou completa: triagem com IA, confirmação e reengajamento. A experiência do paciente melhorou muito."
   }
 ];
 
@@ -59,8 +59,8 @@ export function TestimonialsSection() {
     }
   }, [addScrollAnimation]);
 
-  const plugin = useRef(
-    Autoplay({ delay: 4000, stopOnInteraction: true }) as any
+  const plugin = useRef<ReturnType<typeof Autoplay>>(
+    Autoplay({ delay: 4000, stopOnInteraction: true })
   );
 
   const renderStars = (rating: number) => {
@@ -112,10 +112,10 @@ export function TestimonialsSection() {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-[#6A11CB] to-[#2574FC] bg-clip-text text-transparent">
-            O que dizem sobre nossos sistemas
+            O que dizem sobre nossas automações com IA
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            A satisfação dos nossos clientes é nossa maior conquista
+            Resultados reais com atendimento automatizado no WhatsApp
           </p>
         </motion.div>
 
