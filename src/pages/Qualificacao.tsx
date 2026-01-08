@@ -15,8 +15,6 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
 
 const formSchema = z.object({
@@ -126,9 +124,8 @@ const Qualificacao = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
       
-      <main className="container mx-auto px-4 py-24 md:py-32">
+      <main className="container mx-auto px-4 py-12 md:py-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -698,8 +695,6 @@ const Qualificacao = () => {
           </Form>
         </motion.div>
       </main>
-
-      <Footer />
     </div>
   );
 };
