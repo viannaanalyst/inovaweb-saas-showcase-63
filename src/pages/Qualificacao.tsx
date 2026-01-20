@@ -42,6 +42,9 @@ const formSchema = z.object({
   canalPrincipal: z.enum(["WhatsApp", "Instagram", "Telefone", "Todos os canais", "Outro"], {
     required_error: "Selecione o canal principal.",
   }),
+  quantidadeMensagens: z.enum(["Menos de 100", "100 a 500", "500 a 1.000", "Mais de 1.000", "Não sei informar"], {
+    required_error: "Selecione a quantidade de mensagens.",
+  }),
   atendimentoForaHorario: z.enum(["Sim", "Não", "Apenas respostas esporádicas"], {
     required_error: "Informe sobre o atendimento fora de horário.",
   }),
@@ -67,6 +70,10 @@ const formSchema = z.object({
   }),
 
   // BLOCO 6
+  trafegoPago: z.enum(["Sim", "Não", "Pretendo fazer em breve"], {
+    required_error: "Informe se faz tráfego pago.",
+  }),
+  faturamentoMensal: z.string().optional(),
   entendimentoInvestimento: z.enum(["Sim", "Não", "Quero entender melhor"], {
     required_error: "Selecione uma opção.",
   }),
@@ -88,6 +95,7 @@ const Qualificacao = () => {
       cidadeEstado: "",
       objetivosAutomacao: [],
       problemaPrincipal: "",
+      faturamentoMensal: "",
     },
   });
 
@@ -365,6 +373,35 @@ const Qualificacao = () => {
 
                 <FormField
                   control={form.control}
+                  name="quantidadeMensagens"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Quantidade de mensagens que recebe por mês em média <span className="text-red-500">*</span></FormLabel>
+                      <FormControl>
+                        <RadioGroup
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                          className="flex flex-col space-y-1"
+                        >
+                          {["Menos de 100", "100 a 500", "500 a 1.000", "Mais de 1.000", "Não sei informar"].map((option) => (
+                            <FormItem key={option} className="flex items-center space-x-3 space-y-0">
+                              <FormControl>
+                                <RadioGroupItem value={option} />
+                              </FormControl>
+                              <FormLabel className="font-normal">
+                                {option}
+                              </FormLabel>
+                            </FormItem>
+                          ))}
+                        </RadioGroup>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
                   name="atendimentoForaHorario"
                   render={({ field }) => (
                     <FormItem>
@@ -602,6 +639,49 @@ const Qualificacao = () => {
                 
                 <FormField
                   control={form.control}
+                  name="trafegoPago"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>A clínica faz tráfego pago para captar pacientes? <span className="text-red-500">*</span></FormLabel>
+                      <FormControl>
+                        <RadioGroup
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                          className="flex flex-col space-y-1"
+                        >
+                          {["Sim", "Não", "Pretendo fazer em breve"].map((option) => (
+                            <FormItem key={option} className="flex items-center space-x-3 space-y-0">
+                              <FormControl>
+                                <RadioGroupItem value={option} />
+                              </FormControl>
+                              <FormLabel className="font-normal">
+                                {option}
+                              </FormLabel>
+                            </FormItem>
+                          ))}
+                        </RadioGroup>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="faturamentoMensal"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Qual faturamento médio mensal da clínica (opcional)</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Ex: R$ 50.000,00" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
                   name="entendimentoInvestimento"
                   render={({ field }) => (
                     <FormItem>
@@ -661,7 +741,7 @@ const Qualificacao = () => {
 
               {/* BLOCO FINAL */}
               <div className="space-y-6 pt-6">
-                <h2 className="text-xl font-semibold border-b pb-2">Abertura pra Call</h2>
+                <h2 className="text-xl font-semibold border-b pb-2">Observações</h2>
                 
                 <FormField
                   control={form.control}
