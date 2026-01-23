@@ -12,14 +12,20 @@ export function MobileMenu({ className }: MobileMenuProps) {
   const navigate = useNavigate();
 
   const handleNavigation = (path: string) => {
-    navigate(path);
+    if (path.startsWith("http")) {
+      window.location.href = path;
+    } else {
+      navigate(path);
+    }
     setIsOpen(false); // Fechar menu após navegar
   };
 
   const navigationItems = [
     { label: "Home", path: "/" },
-    { label: "Sobre a empresa", path: "/sobre" },
-    { label: "Contato", path: "/contato" },
+    { label: "Sobre a empresa", path: "/#sobre" },
+    { label: "Contato", path: "/#contato" },
+    { label: "Fale com um Consultor", path: "/consultor" },
+    { label: "Login", path: "https://crm.inovawebtech.com.br/users/sign_in" },
   ];
 
   return (
@@ -52,7 +58,11 @@ export function MobileMenu({ className }: MobileMenuProps) {
                   key={item.path}
                   variant="ghost"
                   onClick={() => handleNavigation(item.path)}
-                  className="w-full justify-start text-left text-foreground hover:bg-accent font-inter font-medium py-3 px-4 rounded-lg"
+                  className={`w-full justify-start text-left text-foreground hover:bg-accent font-inter font-medium py-3 px-4 rounded-lg ${
+                    item.label === "Fale com um Consultor" 
+                      ? "bg-gradient-to-r from-[#6A11CB] to-[#2575FC] text-white hover:opacity-90 hover:text-white" 
+                      : ""
+                  }`}
                 >
                   {item.label}
                 </Button>
