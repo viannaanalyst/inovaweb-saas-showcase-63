@@ -22,10 +22,12 @@ export function MobileMenu({ className }: MobileMenuProps) {
 
   const navigationItems = [
     { label: "Home", path: "/" },
-    { label: "Sobre a empresa", path: "/#sobre" },
+    { label: "Como Funciona", path: "/#como-funciona" },
+    { label: "Sobre", path: "/#sobre" },
+    { label: "Clientes", path: "/#depoimentos" },
     { label: "Contato", path: "/#contato" },
-    { label: "Fale com um Consultor", path: "/consultor" },
     { label: "Login", path: "https://crm.inovawebtech.com.br/users/sign_in" },
+    { label: "Falar com Especialista", path: "/#contato" },
   ];
 
   return (
@@ -35,7 +37,7 @@ export function MobileMenu({ className }: MobileMenuProps) {
         variant="ghost"
         size="icon"
         onClick={() => setIsOpen(!isOpen)}
-        className="h-10 w-10 text-foreground hover:bg-accent"
+        className="h-10 w-10 text-gray-700 hover:bg-brand-purple/5 hover:text-brand-purple transition-colors"
         aria-label="Menu"
       >
         {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -46,22 +48,22 @@ export function MobileMenu({ className }: MobileMenuProps) {
         <>
           {/* Overlay para fechar ao clicar fora */}
           <div
-            className="fixed inset-0 bg-black/50 dark:bg-black/50 z-40"
+            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
             onClick={() => setIsOpen(false)}
           />
           
           {/* Menu deslizante */}
-          <div className="fixed top-[73px] right-0 w-64 h-[calc(100vh-73px)] bg-background border-l border-border z-50 shadow-lg">
+          <div className="fixed top-[73px] right-0 w-64 h-[calc(100vh-73px)] bg-white border-l border-gray-100 z-50 shadow-2xl">
             <nav className="flex flex-col p-4 space-y-2">
               {navigationItems.map((item) => (
                 <Button
                   key={item.path}
                   variant="ghost"
                   onClick={() => handleNavigation(item.path)}
-                  className={`w-full justify-start text-left text-foreground hover:bg-accent font-inter font-medium py-3 px-4 rounded-lg ${
-                    item.label === "Fale com um Consultor" 
-                      ? "bg-gradient-to-r from-[#6A11CB] to-[#2575FC] text-white hover:opacity-90 hover:text-white" 
-                      : ""
+                  className={`w-full justify-start text-left font-sans font-medium py-3 px-4 rounded-xl transition-all ${
+                    item.label === "Falar com Especialista" 
+                      ? "bg-brand-purple text-white hover:bg-brand-purple/90 hover:text-white shadow-md shadow-brand-purple/20 mt-4" 
+                      : "text-gray-600 hover:bg-brand-purple/5 hover:text-brand-purple"
                   }`}
                 >
                   {item.label}

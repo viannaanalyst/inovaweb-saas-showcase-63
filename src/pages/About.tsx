@@ -5,7 +5,7 @@ import { ContactSection } from "@/components/ContactSection";
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-background font-inter">
+    <div className="min-h-screen bg-[#FBFAF7] font-inter">
       <InstitutionalHeader />
       <AboutSection />
       <TechnologiesSection />

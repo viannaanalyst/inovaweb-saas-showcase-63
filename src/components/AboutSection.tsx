@@ -1,102 +1,82 @@
 import { motion } from "framer-motion";
+import { CheckCircle2 } from "lucide-react";
 
 export function AboutSection() {
   return (
-    <motion.section 
-      id="sobre" 
-      className="w-full py-16 px-4 sm:px-6 lg:px-8 bg-background"
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      viewport={{ once: true, amount: 0.3 }}
-    >
-      <div className="max-w-7xl mx-auto">
-        <motion.h2 
-          className="text-3xl sm:text-4xl font-bold font-inter text-center mb-12 text-foreground"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          Sobre a Empresa
-        </motion.h2>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-          {/* Texto - Slide-in da esquerda */}
+    <section id="sobre" className="w-full py-20 px-4 sm:px-6 lg:px-8 bg-[#FBFAF7]">
+      <div className="max-w-desktop mx-auto">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+          
+          {/* Lado Esquerdo: Texto */}
           <motion.div 
-            className="space-y-6"
-            initial={{ opacity: 0, x: -50 }}
+            className="w-full lg:w-1/2 space-y-6"
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true }}
           >
-            <div className="space-y-4 text-card-foreground font-inter leading-relaxed text-base sm:text-lg">
-              <p>
-                A <strong className="text-foreground">InovaWeb</strong> é especializada em automação de atendimento com IA via WhatsApp para clínicas.
-                Nosso foco é eliminar filas, organizar agendamentos e oferecer uma experiência moderna ao paciente.
-              </p>
-              
-              <p>
-                Implementamos fluxos inteligentes de triagem, confirmação, lembretes e pós-consulta,
-                integrando com agendas e sistemas existentes quando necessário, sempre com segurança e escalabilidade.
-              </p>
-              
-              <p>
-                Nossa missão é liberar sua equipe das tarefas repetitivas, aumentar a conversão,
-                reduzir o no-show e elevar a satisfação dos pacientes com atendimento 24/7.
-              </p>
+            <div className="inline-block px-3 py-1 rounded-full bg-brand-purple/10 text-brand-purple text-sm font-semibold mb-2">
+              Sobre a InovaWeb
+            </div>
+            
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
+              Muito mais que um chatbot. <br/>
+              Uma <span className="text-brand-purple">recepção digital completa</span>.
+            </h2>
+            
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Não somos apenas um software. Somos a inteligência que organiza o caos do WhatsApp da sua clínica. 
+              Atuamos como um braço direito da sua recepção, garantindo que nenhum paciente fique sem resposta.
+            </p>
+
+            <div className="space-y-4 pt-4">
+              {[
+                "Atendimento imediato 24h por dia, 7 dias por semana",
+                "Inteligência Artificial que entende o paciente",
+                "Conexão direta com seus agendamentos",
+                "Humanização real: seu paciente não sente que fala com um robô"
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <CheckCircle2 className="h-6 w-6 text-brand-blue flex-shrink-0" />
+                  <span className="text-foreground font-medium">{item}</span>
+                </div>
+              ))}
             </div>
           </motion.div>
 
-          {/* Ilustração/Stats - Slide-in da direita */}
+          {/* Lado Direito: Imagem Ilustrativa Clean */}
           <motion.div 
-            initial={{ opacity: 0, x: 50 }}
+            className="w-full lg:w-1/2"
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
-            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            viewport={{ once: true }}
           >
-            <div className="bg-gradient-to-br from-card to-card/80 dark:from-[#1E1E1E] dark:to-[#1A1A1A] rounded-2xl p-6 sm:p-8 border border-border transition-all duration-300 hover:shadow-card-hover hover:scale-[1.02] hover:border-purple-500/50 hover:shadow-purple-500/20 cursor-pointer group purple-glow-hover">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div className="text-center">
-                    <div className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
-                      5+
-                    </div>
-                    <div className="text-muted-foreground text-sm sm:text-base">
-                      Projetos entregues
-                    </div>
-                  </div>
-                  
-                  <div className="text-center">
-                    <div className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
-                      1+
-                    </div>
-                    <div className="text-muted-foreground text-sm sm:text-base">
-                      Anos de experiência
-                    </div>
-                  </div>
-                  
-                  <div className="text-center">
-                    <div className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
-                      95%
-                    </div>
-                    <div className="text-muted-foreground text-sm sm:text-base">
-                      Clientes satisfeitos
-                    </div>
-                  </div>
-                  
-                  <div className="text-center">
-                    <div className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
-                      24/7
-                    </div>
-                    <div className="text-muted-foreground text-sm sm:text-base">
-                      Suporte disponível
-              </div>
-            </div>
-              </div>
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-brand-purple/10 border-8 border-white bg-white">
+               {/* Placeholder image focused on happy receptionist or clean tech */}
+               <img 
+                 src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=2070" 
+                 alt="Equipe médica organizada" 
+                 className="w-full h-auto object-cover"
+               />
+               
+               {/* Floating Card */}
+               <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-gray-100">
+                 <div className="flex items-center gap-4">
+                   <div className="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 font-bold">
+                     98%
+                   </div>
+                   <div>
+                     <p className="font-bold text-gray-900">Taxa de Resposta</p>
+                     <p className="text-sm text-gray-500">Pacientes atendidos em menos de 1 min</p>
+                   </div>
+                 </div>
+               </div>
             </div>
           </motion.div>
+
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

@@ -131,7 +131,7 @@ const Qualificacao = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#FBFAF7]">
       
       <main className="container mx-auto px-4 py-12 md:py-16">
         <motion.div

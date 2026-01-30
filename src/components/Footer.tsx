@@ -32,53 +32,24 @@ export function Footer() {
   };
 
   return (
-    <footer className="w-full py-8 sm:py-12 px-4 sm:px-6 lg:px-8 bg-background border-t border-border scroll-reveal-fade">
-      <div className="max-w-7xl mx-auto">
-        {/* Main footer content */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-6 sm:mb-8">
+    <footer className="bg-gray-50 border-t border-gray-100 pt-16 pb-8">
+      <div className="max-w-desktop mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           
           {/* Company info */}
-          <div className="text-center md:text-left">
-            <h3 className="text-lg sm:text-xl font-bold font-inter text-foreground mb-3 sm:mb-4">
+          <div className="md:col-span-1">
+            <h3 className="text-xl font-bold font-sans text-brand-purple mb-4">
               InovaWeb
             </h3>
-            <p className="text-muted-foreground font-inter text-sm sm:text-base leading-relaxed">
-              Automação de atendimento no WhatsApp com IA para clínicas. Agendamento, triagem, confirmações e lembretes 24/7.
+            <p className="text-muted-foreground font-sans text-sm leading-relaxed mb-6">
+              Ajudamos clínicas a organizarem seu atendimento e venderem mais com automação humanizada.
             </p>
-          </div>
-
-          {/* Contact info */}
-          <div className="text-center md:text-left">
-            <h4 className="text-base sm:text-lg font-semibold font-inter text-foreground mb-3 sm:mb-4">
-              Contato
-            </h4>
-            <div className="space-y-2">
-              <div className="flex items-center justify-center md:justify-start gap-2 text-muted-foreground">
-                <Mail className="h-4 w-4" />
-                <span className="text-sm sm:text-base link-hover-gradient">contato@inovawebtech.com.br</span>
-              </div>
-              <div className="flex items-center justify-center md:justify-start gap-2 text-muted-foreground">
-                <Phone className="h-4 w-4" />
-                <span className="text-sm sm:text-base link-hover-gradient">(22) 98105-5534</span>
-              </div>
-              <div className="flex items-center justify-center md:justify-start gap-2 text-muted-foreground">
-                <MapPin className="h-4 w-4" />
-                <span className="text-sm sm:text-base">Rio de Janeiro - RJ</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Social links */}
-          <div className="text-center md:text-left">
-            <h4 className="text-base sm:text-lg font-semibold font-inter text-foreground mb-3 sm:mb-4">
-              Redes Sociais
-            </h4>
-            <div className="flex justify-center md:justify-start space-x-3">
+            <div className="flex space-x-3">
               <a 
                 href="https://wa.me/5522981055534" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center w-8 h-8 rounded-full bg-[#25D366] hover:scale-110 transition-all duration-300 icon-hover-bounce" 
+                className="flex items-center justify-center w-8 h-8 rounded-full bg-green-100 text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all duration-300" 
                 aria-label="WhatsApp"
               >
                 <img 
@@ -91,26 +62,67 @@ export function Footer() {
                 href="https://instagram.com/inovaweb.tech" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#FCB045] hover:scale-110 transition-all duration-300 icon-hover-bounce" 
+                className="flex items-center justify-center w-8 h-8 rounded-full bg-pink-100 text-[#C13584] hover:bg-[#C13584] hover:text-white transition-all duration-300" 
                 aria-label="Instagram"
               >
-                <Instagram className="h-4 w-4 text-white" />
+                <Instagram className="h-4 w-4" />
               </a>
-              <a 
-                href="mailto:contato@inovawebtech.com.br" 
-                className="flex items-center justify-center w-8 h-8 rounded-full bg-[#4285F4] hover:bg-[#3367D6] hover:scale-110 transition-all duration-300 icon-hover-bounce" 
-                aria-label="E-mail"
-              >
-                <Mail className="h-4 w-4 text-white" />
-              </a>
+            </div>
+          </div>
+
+          {/* Links */}
+          <div>
+             <h4 className="text-sm font-bold font-sans text-foreground uppercase tracking-wider mb-4">
+              Produto
+            </h4>
+            <ul className="space-y-3 text-sm text-muted-foreground">
+              <li><a href="#como-funciona" className="hover:text-brand-purple transition-colors">Como funciona</a></li>
+              <li><a href="#beneficios" className="hover:text-brand-purple transition-colors">Benefícios</a></li>
+              <li><a href="#crm" className="hover:text-brand-purple transition-colors">CRM Integrado</a></li>
+              <li><a href="#depoimentos" className="hover:text-brand-purple transition-colors">Clientes</a></li>
+            </ul>
+          </div>
+
+           {/* Legal */}
+           <div>
+             <h4 className="text-sm font-bold font-sans text-foreground uppercase tracking-wider mb-4">
+              Legal
+            </h4>
+            <ul className="space-y-3 text-sm text-muted-foreground">
+              <li><a href="#" className="hover:text-brand-purple transition-colors">Termos de Uso</a></li>
+              <li><a href="#" className="hover:text-brand-purple transition-colors">Privacidade</a></li>
+            </ul>
+          </div>
+
+          {/* Contact info */}
+          <div>
+            <h4 className="text-sm font-bold font-sans text-foreground uppercase tracking-wider mb-4">
+              Fale Conosco
+            </h4>
+            <div className="space-y-3">
+              <div className="flex items-start gap-3 text-muted-foreground">
+                <Mail className="h-4 w-4 mt-1 text-brand-purple" />
+                <span className="text-sm">contato@inovawebtech.com.br</span>
+              </div>
+              <div className="flex items-start gap-3 text-muted-foreground">
+                <Phone className="h-4 w-4 mt-1 text-brand-purple" />
+                <span className="text-sm">(22) 98105-5534</span>
+              </div>
+              <div className="flex items-start gap-3 text-muted-foreground">
+                <MapPin className="h-4 w-4 mt-1 text-brand-purple" />
+                <span className="text-sm">Rio de Janeiro - RJ</span>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-border pt-4 sm:pt-6">
-          <p className="text-center text-muted-foreground font-inter text-sm sm:text-base">
-            © 2025 InovaWeb - Todos os direitos reservados
+        <div className="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-center text-muted-foreground font-sans text-xs">
+            © 2025 InovaWeb Tecnologia. Todos os direitos reservados.
+          </p>
+          <p className="text-center text-muted-foreground font-sans text-xs flex items-center gap-1">
+            Feito com <span className="text-red-500">♥</span> para clínicas
           </p>
         </div>
       </div>

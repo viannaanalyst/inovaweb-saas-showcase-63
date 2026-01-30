@@ -91,31 +91,32 @@ export function TestimonialsSection() {
 
   return (
     <motion.section
+      id="depoimentos"
       ref={sectionRef}
-      className="relative py-12 sm:py-16 lg:py-24 px-4 sm:px-6 lg:px-8 scroll-reveal-fade"
+      className="relative py-20 px-4 sm:px-6 lg:px-8 bg-white scroll-reveal-fade"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       viewport={{ once: true, margin: "-100px" }}
     >
       {/* Background Effects */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-3xl" />
-      <div className="absolute inset-0 geometric-particles opacity-30" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-purple/5 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/4"></div>
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-blue/5 rounded-full blur-3xl -z-10 -translate-x-1/2 translate-y-1/4"></div>
 
-      <div className="relative max-w-7xl mx-auto">
+      <div className="relative max-w-desktop mx-auto">
         {/* Section Title */}
         <motion.div
-          className="text-center mb-12 lg:mb-16"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-[#6A11CB] to-[#2574FC] bg-clip-text text-transparent">
-            O que dizem sobre nossas automações com IA
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-foreground font-sans">
+            O que dizem sobre nossa <span className="text-brand-purple">tecnologia</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Resultados reais com atendimento automatizado no WhatsApp
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-sans">
+            Gestores e clínicas que transformaram seu atendimento
           </p>
         </motion.div>
 
@@ -129,7 +130,7 @@ export function TestimonialsSection() {
         >
           <Carousel
             plugins={[plugin.current]}
-            className="w-full max-w-5xl mx-auto"
+            className="w-full max-w-6xl mx-auto"
             opts={{
               align: "start",
               loop: true,
@@ -140,57 +141,47 @@ export function TestimonialsSection() {
           >
             <CarouselContent>
               {testimonials.map((testimonial, index) => (
-                <CarouselItem key={testimonial.id}>
+                <CarouselItem key={testimonial.id} className="md:basis-1/2 lg:basis-1/2">
                   <motion.div 
-                    className="p-6 lg:p-8 group"
+                    className="p-4 h-full"
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                   >
-                    <div className="relative bg-card/40 backdrop-blur-md border border-border/20 rounded-xl p-6 lg:p-8 transition-all duration-500 group-hover:bg-card/60 group-hover:border-primary/30 group-hover:shadow-[0_0_30px_rgba(106,17,203,0.3)] group-hover:scale-[1.02]">
-                      {/* Gradient Border Effect */}
-                      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#6A11CB] to-[#2574FC] opacity-0 group-hover:opacity-20 transition-opacity duration-500 -z-10" />
+                    <div className="relative bg-[#FBFAF7] border border-gray-100 rounded-3xl p-8 h-full flex flex-col justify-between hover:shadow-xl hover:shadow-brand-purple/5 transition-all duration-300 hover:-translate-y-1">
                       
-                      <div className="flex flex-col lg:flex-row items-center lg:items-start gap-6">
-                        {/* Avatar */}
-                        <div className="relative">
-                          <Avatar className="w-16 h-16 lg:w-20 lg:h-20 ring-2 ring-primary/20 group-hover:ring-primary/40 transition-all duration-300">
+                      <div className="flex flex-col gap-6">
+                        {/* Avatar & Header */}
+                        <div className="flex items-center gap-4">
+                          <Avatar className="w-14 h-14 ring-2 ring-white shadow-sm">
                             <AvatarImage 
                               src={testimonial.avatar} 
                               alt={testimonial.name}
                               className="object-cover"
                             />
-                            <AvatarFallback className="bg-gradient-to-br from-primary/20 to-secondary/20 text-primary font-semibold">
+                            <AvatarFallback className="bg-brand-purple/10 text-brand-purple font-semibold">
                               {testimonial.name.split(' ').map(n => n[0]).join('')}
                             </AvatarFallback>
                           </Avatar>
-                          <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-primary rounded-full flex items-center justify-center">
-                            <Star className="w-3 h-3 text-white fill-current" />
-                          </div>
-                        </div>
-
-                        {/* Content */}
-                        <div className="flex-1 text-center lg:text-left">
-                          {/* Stars */}
-                          <div className="flex justify-center lg:justify-start gap-1 mb-3">
-                            {renderStars(testimonial.rating)}
-                          </div>
-
-                          {/* Comment */}
-                          <blockquote className="text-lg lg:text-xl text-foreground/90 mb-4 italic leading-relaxed">
-                            "{testimonial.comment}"
-                          </blockquote>
-
-                          {/* Author Info */}
                           <div>
-                            <h4 className="font-semibold text-foreground text-lg">
+                            <h4 className="font-bold text-foreground text-lg font-sans">
                               {testimonial.name}
                             </h4>
-                            <p className="text-muted-foreground text-sm">
+                            <p className="text-brand-purple text-sm font-medium">
                               {testimonial.role}
                             </p>
                           </div>
                         </div>
+
+                        {/* Comment */}
+                        <blockquote className="text-muted-foreground text-base leading-relaxed">
+                          "{testimonial.comment}"
+                        </blockquote>
+                      </div>
+
+                      {/* Stars */}
+                      <div className="flex gap-1 mt-6">
+                        {renderStars(testimonial.rating)}
                       </div>
                     </div>
                   </motion.div>
@@ -198,19 +189,9 @@ export function TestimonialsSection() {
               ))}
             </CarouselContent>
             
-            <CarouselPrevious className="hidden lg:flex -left-16 bg-card/80 backdrop-blur-md border-primary/20 hover:bg-primary/20 hover:border-primary/40 text-foreground" />
-            <CarouselNext className="hidden lg:flex -right-16 bg-card/80 backdrop-blur-md border-primary/20 hover:bg-primary/20 hover:border-primary/40 text-foreground" />
+            <CarouselPrevious className="hidden lg:flex -left-16 bg-white border-gray-200 hover:bg-gray-50 hover:text-brand-purple text-gray-400" />
+            <CarouselNext className="hidden lg:flex -right-16 bg-white border-gray-200 hover:bg-gray-50 hover:text-brand-purple text-gray-400" />
           </Carousel>
-
-          {/* Mobile Navigation Dots */}
-          <div className="flex justify-center mt-8 lg:hidden">
-            {testimonials.map((_, index) => (
-              <div
-                key={index}
-                className="w-2 h-2 rounded-full bg-primary/30 mx-1 transition-all duration-300"
-              />
-            ))}
-          </div>
         </motion.div>
       </div>
     </motion.section>

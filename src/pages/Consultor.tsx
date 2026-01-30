@@ -60,7 +60,7 @@ const Consultor = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background font-inter flex flex-col">
+    <div className="min-h-screen bg-[#FBFAF7] font-inter flex flex-col">
       <main className="flex-grow py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
         <Card className="w-full max-w-2xl shadow-lg">
           <CardHeader className="text-center">

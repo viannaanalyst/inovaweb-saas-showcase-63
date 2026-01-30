@@ -6,6 +6,7 @@ import { Mail, Instagram } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { toast } from "sonner";
+
 export function ContactSection() {
   const [name, setName] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
@@ -56,81 +57,79 @@ export function ContactSection() {
       setLoading(false);
     }
   };
-  return <motion.section 
-    id="contato" 
-    className="w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-background"
-    initial={{ opacity: 0, y: 50 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.8, ease: "easeOut" }}
-    viewport={{ once: true, amount: 0.3 }}
-  >
+
+  return (
+    <motion.section 
+      id="contato" 
+      className="w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-white"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.3 }}
+    >
       <div className="max-w-4xl mx-auto">
-        <motion.h2 
-          className="text-2xl sm:text-3xl lg:text-4xl font-bold font-inter text-center mb-6 sm:mb-8 text-foreground"
+        <motion.div 
+          className="text-center mb-10"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
           viewport={{ once: true }}
         >
-          Contato
-        </motion.h2>
-        
-        <motion.p 
-          className="text-center text-card-foreground font-inter text-base sm:text-lg mb-8 sm:mb-12 px-4"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
-          viewport={{ once: true }}
-        >
-          Quer automatizar o atendimento da sua clínica no WhatsApp com IA? Conte-nos sobre seu fluxo atual e seus objetivos. Vamos montar uma solução sob medida para reduzir filas, organizar agendamentos e aumentar a satisfação dos pacientes.
-        </motion.p>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-sans text-foreground mb-6">
+            Vamos modernizar sua clínica?
+          </h2>
+          <p className="text-muted-foreground font-sans text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
+            Deixe o atendimento repetitivo com nossa IA e foque no que importa: seus pacientes. Preencha abaixo para falar com um especialista.
+          </p>
+        </motion.div>
         
         <motion.div 
-          className="bg-card rounded-2xl p-4 sm:p-6 lg:p-8 border border-border"
+          className="bg-[#FBFAF7] rounded-3xl p-6 sm:p-10 lg:p-12 border border-purple-100 shadow-xl shadow-purple-500/5"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
           viewport={{ once: true, amount: 0.3 }}
         >
-          <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit}>
-            <div className="space-y-2">
-              <Label htmlFor="name" className="text-foreground font-inter text-sm sm:text-base">Nome</Label>
-              <Input 
-                id="name" 
-                placeholder="Seu nome completo" 
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className={`bg-input text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-ring h-10 sm:h-11 transition-colors ${
-                  name.trim() ? 'border-purple-500 ring-2 ring-purple-500/20' : 'border-border'
-                }`} 
-              />
+          <form className="space-y-6" onSubmit={handleSubmit}>
+            <div className="grid sm:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <Label htmlFor="name" className="text-foreground font-sans font-medium text-base">Nome completo</Label>
+                <Input 
+                  id="name" 
+                  placeholder="Ex: Dr. Carlos Silva" 
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className={`bg-white text-foreground placeholder:text-gray-400 h-12 rounded-xl transition-all duration-300 ${
+                    name.trim() ? 'border-brand-purple ring-2 ring-brand-purple/10' : 'border-gray-200 hover:border-brand-purple/50'
+                  }`} 
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="whatsapp" className="text-foreground font-sans font-medium text-base">WhatsApp</Label>
+                <Input 
+                  id="whatsapp" 
+                  type="tel"
+                  inputMode="numeric"
+                  placeholder="(00) 00000-0000" 
+                  value={whatsapp}
+                  onChange={(e) => setWhatsapp(e.target.value.replace(/\D/g, ""))}
+                  className={`bg-white text-foreground placeholder:text-gray-400 h-12 rounded-xl transition-all duration-300 ${
+                    whatsapp.trim() ? 'border-brand-purple ring-2 ring-brand-purple/10' : 'border-gray-200 hover:border-brand-purple/50'
+                  }`} 
+                />
+              </div>
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="whatsapp" className="text-foreground font-inter text-sm sm:text-base">WhatsApp</Label>
-              <Input 
-                id="whatsapp" 
-                type="tel"
-                inputMode="numeric"
-                pattern="[0-9]*"
-                placeholder="Somente números com DDD. Ex: 22981055534" 
-                value={whatsapp}
-                onChange={(e) => setWhatsapp(e.target.value.replace(/\D/g, ""))}
-                className={`bg-input text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-ring h-10 sm:h-11 transition-colors ${
-                  whatsapp.trim() ? 'border-purple-500 ring-2 ring-purple-500/20' : 'border-border'
-                }`} 
-              />
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="message" className="text-foreground font-inter text-sm sm:text-base">Mensagem</Label>
+              <Label htmlFor="message" className="text-foreground font-sans font-medium text-base">Como podemos ajudar?</Label>
               <Textarea 
                 id="message" 
-                placeholder="Conte-nos sobre sua clínica e seus objetivos de automação..." 
+                placeholder="Conte sobre o volume de atendimentos ou dificuldades atuais..." 
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                className={`bg-input text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-ring min-h-[100px] sm:min-h-[120px] resize-none transition-colors ${
-                  message.trim() ? 'border-purple-500 ring-2 ring-purple-500/20' : 'border-border'
+                className={`bg-white text-foreground placeholder:text-gray-400 min-h-[120px] rounded-xl resize-none transition-all duration-300 ${
+                  message.trim() ? 'border-brand-purple ring-2 ring-brand-purple/10' : 'border-gray-200 hover:border-brand-purple/50'
                 }`} 
               />
             </div>
@@ -138,13 +137,15 @@ export function ContactSection() {
             <Button 
               type="submit"
               disabled={loading}
-              className="w-full bg-gradient-brand hover:opacity-90 hover:scale-[1.02] font-inter font-medium text-base sm:text-lg py-2.5 sm:py-3 h-auto disabled:opacity-60 disabled:cursor-not-allowed"
+              className="w-full bg-brand-purple hover:bg-brand-purple/90 text-white font-sans font-semibold text-lg py-6 h-auto rounded-xl shadow-lg shadow-brand-purple/20 transition-all duration-300 hover:-translate-y-1 disabled:opacity-60 disabled:hover:translate-y-0"
             >
-              {loading ? "Enviando..." : "Enviar"}
+              {loading ? "Enviando..." : "Falar com especialista"}
             </Button>
           </form>
           
-          <div className="flex justify-center space-x-3 mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-border">
+          <div className="flex flex-col items-center mt-10 pt-8 border-t border-gray-100">
+            <p className="text-muted-foreground text-sm mb-4">Ou fale diretamente em nossos canais:</p>
+            <div className="flex justify-center space-x-4">
             <a 
               href="https://wa.me/5522981055534" 
               className="w-8 h-8 rounded-full bg-[#25D366] hover:scale-110 transition-all duration-300 flex items-center justify-center icon-hover-bounce" 
@@ -173,7 +174,9 @@ export function ContactSection() {
               <Mail className="h-4 w-4 text-white" />
             </a>
           </div>
+          </div>
         </motion.div>
       </div>
-    </motion.section>;
+    </motion.section>
+  );
 }

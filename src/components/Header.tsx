@@ -1,53 +1,78 @@
 import { MobileMenu } from "@/components/MobileMenu";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 export function Header() {
-  // Sempre usar o logo escuro para o modo único escuro
-  const logoSrc = "/lovable-uploads/a024d666-37da-4e60-a791-1b9c1d6a244f.png";
   const navigate = useNavigate();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-[9999] bg-background/95 backdrop-blur-md border-b border-transparent shadow-sm">
-      {/* Gradiente da borda - funciona em ambos os modos */}
-      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-[#6A11CB] to-[#2575FC] opacity-90"></div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <header 
+      className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${
+        isScrolled 
+          ? "bg-white/20 backdrop-blur-md py-3 shadow-sm" 
+          : "bg-transparent py-5"
+      }`}
+    >
+      <div className="max-w-desktop mx-auto">
         <div className="flex items-center justify-between w-full">
-          {/* Logo no canto esquerdo */}
+          {/* Logo */}
           <div className="flex items-center flex-shrink-0 cursor-pointer" onClick={() => navigate('/')}>
             <img 
-              src={logoSrc}
-              alt="InovaWeb Agência" 
-              className="h-10 sm:h-12 w-auto transition-opacity duration-300"
+              src="/lovable-uploads/logo_light.png"
+              alt="InovaWeb" 
+              className="h-10 sm:h-12 w-auto object-contain"
             />
           </div>
           
-          {/* Navigation - Desktop perfeitamente centralizada */}
+          {/* Navigation - Desktop */}
           <nav className="hidden lg:flex items-center justify-center space-x-8">
             <button
               onClick={() => {
                  navigate('/');
                  setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
               }}
-              className="text-foreground hover:text-foreground font-inter font-medium relative group px-4 py-2 block transition-colors duration-200"
+              className="text-black hover:text-brand-purple font-bold text-sm transition-colors duration-200"
             >
               Home
-              <span className="absolute left-0 bottom-0 w-full h-0.5 bg-gradient-brand scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
             </button>
             <a
-              href="/#sobre"
-              className="text-foreground hover:text-foreground font-inter font-medium relative group px-4 py-2 block transition-colors duration-200"
+              href="/#como-funciona"
+              className="text-black hover:text-brand-purple font-bold text-sm transition-colors duration-200"
             >
-              Sobre a empresa
-              <span className="absolute left-0 bottom-0 w-full h-0.5 bg-gradient-brand scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+              Como Funciona
             </a>
-            
+            <a
+              href="/#sobre"
+              className="text-black hover:text-brand-purple font-bold text-sm transition-colors duration-200"
+            >
+              Sobre
+            </a>
+            <a
+              href="/#depoimentos"
+              className="text-black hover:text-brand-purple font-bold text-sm transition-colors duration-200"
+            >
+              Clientes
+            </a>
             <a
               href="/#contato"
-              className="text-foreground hover:text-foreground font-inter font-medium relative group px-4 py-2 block transition-colors duration-200"
+              className="text-black hover:text-brand-purple font-bold text-sm transition-colors duration-200"
             >
               Contato
-              <span className="absolute left-0 bottom-0 w-full h-0.5 bg-gradient-brand scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
             </a>
           </nav>
 
@@ -56,15 +81,22 @@ export function Header() {
              <Button 
                variant="ghost" 
                onClick={() => window.location.href = "https://crm.inovawebtech.com.br/users/sign_in"}
-               className="text-foreground hover:text-foreground/80"
+               className="text-black hover:text-brand-purple font-bold"
              >
                Login
              </Button>
              <Button 
-               onClick={() => navigate('/consultor')}
-               className="bg-gradient-to-r from-[#6A11CB] to-[#2575FC] text-white hover:opacity-90 transition-opacity border-0"
+               onClick={() => {
+                 const contactSection = document.getElementById('contato');
+                 if (contactSection) {
+                   contactSection.scrollIntoView({ behavior: 'smooth' });
+                 } else {
+                   navigate('/#contato');
+                 }
+               }}
+               className="bg-[#6A11CB] hover:bg-[#5a0eb3] text-white font-bold rounded-full px-8 shadow-none transition-all duration-300 ease-in-out"
              >
-               Fale com um Consultor
+               Falar com especialista
              </Button>
           </div>
 
