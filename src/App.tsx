@@ -12,6 +12,7 @@ import WhatsAppRedirect from "./pages/WhatsAppRedirect";
 import Qualificacao from "./pages/Qualificacao";
 import Consultor from "./pages/Consultor";
 import NotFound from "./pages/NotFound";
+import Termos from "./pages/Termos";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ const App = () => (
             <Route path="/whats" element={<WhatsAppRedirect />} />
             <Route path="/qualificacao" element={<Qualificacao />} />
             <Route path="/consultor" element={<Consultor />} />
+            <Route path="/termos" element={<Termos />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
