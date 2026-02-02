@@ -1,79 +1,108 @@
 import { motion } from "framer-motion";
-import { MessageSquareWarning, Clock, BadgeDollarSign, Users } from "lucide-react";
+import { MessageSquare, Clock, TrendingDown, Users } from "lucide-react";
 
 export function DiagnosticSection() {
-  const cards = [
+  const problems = [
     {
-      icon: MessageSquareWarning,
+      icon: MessageSquare,
       title: "Mensagens sem resposta",
-      description: "Cada minuto sem retorno é um paciente a menos.",
-      closing: "Automatize o primeiro contato e mantenha o canal vivo."
+      dotColor: "bg-red-400"
+    },
+    {
+      icon: TrendingDown,
+      title: "Leads pagos desperdiçados",
+      dotColor: "bg-orange-400"
     },
     {
       icon: Clock,
-      title: "Fora do horário",
-      description: "À noite e no fim de semana, a clínica para. O paciente não.",
-      closing: "Fluxos 24/7 com confirmações e lembretes automáticos."
-    },
-    {
-      icon: BadgeDollarSign,
-      title: "Leads pagos desperdiçados",
-      description: "Demora no WhatsApp transforma tráfego pago em prejuízo.",
-      closing: "Capture e qualifique em segundos com automação + CRM."
+      title: "Atendimento fora do horário",
+      dotColor: "bg-blue-400"
     },
     {
       icon: Users,
       title: "Recepção sobrecarregada",
-      description: "Mensagens repetidas travam o funil. A venda não acontece.",
-      closing: "IA coleta dados e entrega casos prontos para o humano."
+      dotColor: "bg-purple-400"
     }
   ];
 
   return (
-    <section className="w-full py-28 px-4 sm:px-6 lg:px-10 bg-[#FBFAF7]">
-      <div className="max-w-desktop mx-auto">
-        <div className="text-center mb-14">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black leading-tight">
-            Quanto dinheiro sua clínica perde por atrasos no WhatsApp?
-          </h2>
-          <p className="mt-3 text-lg text-gray-800">
-            Pequenos atrasos viram grandes perdas. Veja se isso está acontecendo com você.
-          </p>
-        </div>
+    <section className="w-full py-40 px-4 sm:px-6 lg:px-8 bg-[#FBFAF7] relative overflow-hidden">
+      {/* Sutil detalhe de fundo */}
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-gray-50/50 to-transparent pointer-events-none" />
+      
+      <div className="max-w-desktop mx-auto relative z-10">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-20 lg:gap-32">
+          
+          {/* Coluna Esquerda: Lista de Problemas com Design Refinado */}
+          <div className="w-full lg:w-1/2">
+            <div className="space-y-10">
+              {problems.map((problem, i) => {
+                const Icon = problem.icon;
+                return (
+                  <motion.div
+                    key={problem.title}
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.7, delay: i * 0.15 }}
+                    className="flex items-center gap-6 group"
+                  >
+                    <div className="relative">
+                      <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-white shadow-sm border border-gray-100 group-hover:border-brand-purple/20 group-hover:shadow-md transition-all duration-500">
+                        <Icon className="w-5 h-5 text-gray-400 group-hover:text-brand-purple transition-colors duration-500" />
+                      </div>
+                      {/* Indicador de status sutil */}
+                      <div className={`absolute -top-1 -right-1 w-3 h-3 rounded-full border-2 border-[#FBFAF7] ${problem.dotColor} opacity-80`} />
+                    </div>
+                    
+                    <div className="flex flex-col">
+                      <span className="text-xl font-semibold text-gray-800 tracking-tight group-hover:text-black transition-colors duration-500">
+                        {problem.title}
+                      </span>
+                      <div className="h-px w-0 group-hover:w-full bg-gradient-to-r from-brand-purple/40 to-transparent transition-all duration-700 mt-1" />
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-          {cards.map((card, i) => {
-            const Icon = card.icon;
-            const accents = ["#6A11CB", "#2574FC", "#2c1c8d"];
-            const color = accents[i % accents.length];
-            return (
-              <motion.div
-                key={card.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                whileHover={{ y: -6, scale: 1.02, boxShadow: `0 22px 55px -15px rgba(0,0,0,0.35), 0 0 60px ${color}55` }}
-                style={{ boxShadow: `0 16px 40px -18px rgba(0,0,0,0.25), 0 0 36px ${color}33` }}
-                className="rounded-2xl bg-white/85 backdrop-blur-md border border-white/60 p-8 md:min-h-[190px] transition-all duration-300 ease-out"
-              >
-                <div className="flex items-start gap-5">
-                  <div className="w-14 h-14 rounded-full bg-white/30 backdrop-blur-lg border border-white/50 shadow-sm flex items-center justify-center">
-                    <Icon className="w-8 h-8" color={color} />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-extrabold text-gray-900">{card.title}</h3>
-                    <p className="mt-1 text-gray-800 text-base">
-                      {card.description}
-                    </p>
-                    <p className="mt-2 text-sm text-gray-700">
-                      {card.closing} Conecte tudo com automação + CRM Inova Web.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
+          {/* Coluna Direita: Tipografia Premium e Manifesto */}
+          <motion.div 
+            className="w-full lg:w-5/12 space-y-8"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9 }}
+          >
+            <div className="space-y-4">
+              <span className="text-brand-purple font-bold tracking-[0.2em] text-xs uppercase opacity-70">
+                Diagnóstico de Perda
+              </span>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-[1.1] tracking-tight">
+                Pequenos atrasos geram <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-gray-800 to-brand-purple">
+                  grandes perdas.
+                </span>
+              </h2>
+            </div>
+            
+            <div className="relative pl-6 border-l-2 border-brand-purple/10">
+              <p className="text-xl text-gray-500 leading-relaxed italic">
+                "Quando o atendimento não é estruturado, o paciente não espera — ele procura outra clínica."
+              </p>
+            </div>
+            
+            <motion.p 
+              className="text-lg text-gray-400 font-medium"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              Identifique os gargalos antes que eles se tornem prejuízo.
+            </motion.p>
+          </motion.div>
+
         </div>
       </div>
     </section>

@@ -79,13 +79,6 @@ export function Header() {
           {/* Right side buttons */}
           <div className="hidden lg:flex items-center space-x-4">
              <Button 
-               variant="ghost" 
-               onClick={() => window.location.href = "https://crm.inovawebtech.com.br/users/sign_in"}
-               className="text-black hover:text-brand-purple font-bold"
-             >
-               Login
-             </Button>
-             <Button 
                onClick={() => {
                  const contactSection = document.getElementById('contato');
                  if (contactSection) {
@@ -94,9 +87,9 @@ export function Header() {
                    navigate('/#contato');
                  }
                }}
-               className="bg-[#6A11CB] hover:bg-[#5a0eb3] text-white font-bold rounded-full px-8 shadow-none transition-all duration-300 ease-in-out"
+               className="w-[145px] h-[48px] bg-brand-purple hover:bg-brand-purple/90 text-white font-bold rounded-xl text-[14px] transition-all shadow-lg shadow-brand-purple/20 active:scale-95 p-0"
              >
-               Falar com especialista
+               Solicitar demo
              </Button>
           </div>
 

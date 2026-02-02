@@ -1,31 +1,38 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, Instagram } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { toast } from "sonner";
 
 export function ContactSection() {
-  const [name, setName] = useState("");
-  const [whatsapp, setWhatsapp] = useState("");
-  const [message, setMessage] = useState("");
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    area: "",
+    role: "",
+    email: "",
+    phone: "",
+  });
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!name.trim() || !whatsapp.trim()) {
-      toast.error("Preencha Nome e WhatsApp para enviar.");
+    if (!formData.firstName || !formData.email || !formData.phone) {
+      toast.error("Por favor, preencha os campos obrigatórios.");
       return;
     }
 
     const payload = {
-      name,
-      whatsapp,
-      message,
-      source: "site-contato",
+      nome: formData.firstName,
+      sobrenome: formData.lastName,
+      area: formData.area,
+      cargo: formData.role,
+      email: formData.email,
+      telefone: formData.phone,
+      source: "site-demo-request",
       timestamp: new Date().toISOString(),
     };
 
@@ -43,140 +50,165 @@ export function ContactSection() {
       );
 
       if (!response.ok) {
-        throw new Error("Falha ao enviar para o webhook");
+        throw new Error("Falha ao enviar");
       }
 
-      toast.success("Contato enviado com sucesso! Em breve entraremos em contato.");
-      setName("");
-      setWhatsapp("");
-      setMessage("");
+      toast.success("Solicitação enviada! Entraremos em contato em breve.");
+      setFormData({
+        firstName: "",
+        lastName: "",
+        area: "",
+        role: "",
+        email: "",
+        phone: "",
+      });
     } catch (error) {
-      console.error("Erro ao enviar contato:", error);
-      toast.error("Não foi possível enviar. Tente novamente em instantes.");
+      console.error("Erro ao enviar:", error);
+      toast.error("Erro ao enviar. Tente novamente mais tarde.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <motion.section 
-      id="contato" 
-      className="w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-white"
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      viewport={{ once: true, amount: 0.3 }}
-    >
-      <div className="max-w-4xl mx-auto">
-        <motion.div 
-          className="text-center mb-10"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-sans text-foreground mb-6">
-            Vamos modernizar sua clínica?
-          </h2>
-          <p className="text-muted-foreground font-sans text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
-            Deixe o atendimento repetitivo com nossa IA e foque no que importa: seus pacientes. Preencha abaixo para falar com um especialista.
-          </p>
-        </motion.div>
-        
-        <motion.div 
-          className="bg-[#FBFAF7] rounded-3xl p-6 sm:p-10 lg:p-12 border border-purple-100 shadow-xl shadow-purple-500/5"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          <form className="space-y-6" onSubmit={handleSubmit}>
-            <div className="grid sm:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <Label htmlFor="name" className="text-foreground font-sans font-medium text-base">Nome completo</Label>
-                <Input 
-                  id="name" 
-                  placeholder="Ex: Dr. Carlos Silva" 
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className={`bg-white text-foreground placeholder:text-gray-400 h-12 rounded-xl transition-all duration-300 ${
-                    name.trim() ? 'border-brand-purple ring-2 ring-brand-purple/10' : 'border-gray-200 hover:border-brand-purple/50'
-                  }`} 
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="whatsapp" className="text-foreground font-sans font-medium text-base">WhatsApp</Label>
-                <Input 
-                  id="whatsapp" 
-                  type="tel"
-                  inputMode="numeric"
-                  placeholder="(00) 00000-0000" 
-                  value={whatsapp}
-                  onChange={(e) => setWhatsapp(e.target.value.replace(/\D/g, ""))}
-                  className={`bg-white text-foreground placeholder:text-gray-400 h-12 rounded-xl transition-all duration-300 ${
-                    whatsapp.trim() ? 'border-brand-purple ring-2 ring-brand-purple/10' : 'border-gray-200 hover:border-brand-purple/50'
-                  }`} 
-                />
-              </div>
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="message" className="text-foreground font-sans font-medium text-base">Como podemos ajudar?</Label>
-              <Textarea 
-                id="message" 
-                placeholder="Conte sobre o volume de atendimentos ou dificuldades atuais..." 
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                className={`bg-white text-foreground placeholder:text-gray-400 min-h-[120px] rounded-xl resize-none transition-all duration-300 ${
-                  message.trim() ? 'border-brand-purple ring-2 ring-brand-purple/10' : 'border-gray-200 hover:border-brand-purple/50'
-                }`} 
-              />
-            </div>
-            
-            <Button 
-              type="submit"
-              disabled={loading}
-              className="w-full bg-brand-purple hover:bg-brand-purple/90 text-white font-sans font-semibold text-lg py-6 h-auto rounded-xl shadow-lg shadow-brand-purple/20 transition-all duration-300 hover:-translate-y-1 disabled:opacity-60 disabled:hover:translate-y-0"
-            >
-              {loading ? "Enviando..." : "Falar com especialista"}
-            </Button>
-          </form>
-          
-          <div className="flex flex-col items-center mt-10 pt-8 border-t border-gray-100">
-            <p className="text-muted-foreground text-sm mb-4">Ou fale diretamente em nossos canais:</p>
-            <div className="flex justify-center space-x-4">
-            <a 
-              href="https://wa.me/5522981055534" 
-              className="w-8 h-8 rounded-full bg-[#25D366] hover:scale-110 transition-all duration-300 flex items-center justify-center icon-hover-bounce" 
-              aria-label="WhatsApp"
-            >
-              <img 
-                src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
-                alt="WhatsApp" 
-                className="h-4 w-4"
-              />
-            </a>
-            <a 
-              href="https://instagram.com/inovaweb.tech" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#FCB045] hover:scale-110 transition-all duration-300 flex items-center justify-center icon-hover-bounce" 
-              aria-label="Instagram"
-            >
-              <Instagram className="h-4 w-4 text-white" />
-            </a>
-            <a 
-              href="mailto:contato@inovawebtech.com.br" 
-              className="w-8 h-8 rounded-full bg-[#4285F4] hover:bg-[#3367D6] hover:scale-110 transition-all duration-300 flex items-center justify-center icon-hover-bounce" 
-              aria-label="E-mail"
-            >
-              <Mail className="h-4 w-4 text-white" />
-            </a>
-          </div>
-          </div>
-        </motion.div>
+    <section id="contato" className="w-full py-32 px-4 sm:px-6 lg:px-8 bg-[#FAFAF8] relative overflow-hidden">
+      {/* Background Decor - Subtle Premium feel */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-[10%] right-[-5%] w-[500px] h-[500px] bg-brand-purple/5 rounded-full filter blur-[100px]"></div>
+        <div className="absolute bottom-[10%] left-[-5%] w-[500px] h-[500px] bg-brand-blue/5 rounded-full filter blur-[100px]"></div>
       </div>
-    </motion.section>
+
+      <div className="max-w-desktop mx-auto relative z-10">
+        <div className="flex flex-col lg:flex-row items-start gap-16 lg:gap-24">
+          
+          {/* Coluna Esquerda: Título Impactante */}
+          <motion.div 
+            className="w-full lg:w-1/3"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-[32px] font-bold text-gray-900 leading-[1.1] tracking-tight">
+              Solicite uma <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple to-brand-blue">
+                demonstração
+              </span>
+            </h2>
+          </motion.div>
+
+          {/* Coluna Direita: Descrição e Formulário Premium */}
+          <motion.div 
+            className="w-full lg:w-2/3 space-y-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <p className="text-[14px] text-gray-600 leading-relaxed max-w-2xl">
+              Preencha o formulário e nosso time entrará em contato para agendar uma demonstração.
+            </p>
+
+            <form onSubmit={handleSubmit} className="space-y-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Nome e Sobrenome */}
+                <div className="space-y-2">
+                  <Label htmlFor="firstName" className="text-sm font-bold text-gray-900 uppercase tracking-wider">Nome</Label>
+                  <Input 
+                    id="firstName" 
+                    placeholder="Digite seu nome" 
+                    value={formData.firstName}
+                    onChange={(e) => setFormData({...formData, firstName: e.target.value})}
+                    className="h-14 bg-white border-gray-300 focus:border-brand-purple focus:ring-1 focus:ring-brand-purple/20 transition-all rounded-xl shadow-sm placeholder:text-gray-400"
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="lastName" className="text-sm font-bold text-gray-900 uppercase tracking-wider">Sobrenome</Label>
+                  <Input 
+                    id="lastName" 
+                    placeholder="Digite seu sobrenome" 
+                    value={formData.lastName}
+                    onChange={(e) => setFormData({...formData, lastName: e.target.value})}
+                    className="h-14 bg-white border-gray-300 focus:border-brand-purple focus:ring-1 focus:ring-brand-purple/20 transition-all rounded-xl shadow-sm placeholder:text-gray-400"
+                    required
+                  />
+                </div>
+
+                {/* Área e Cargo */}
+                <div className="space-y-2">
+                  <Label htmlFor="area" className="text-sm font-bold text-gray-900 uppercase tracking-wider">Sua área</Label>
+                  <Select 
+                    onValueChange={(value) => setFormData({...formData, area: value})}
+                    value={formData.area}
+                  >
+                    <SelectTrigger className="h-14 bg-white border-gray-300 focus:border-brand-purple focus:ring-1 focus:ring-brand-purple/20 transition-all rounded-xl shadow-sm text-gray-600">
+                      <SelectValue placeholder="Selecione" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {["Tech", "Inovação", "Negócios", "Médico", "Produto", "Vendas / Novos negócios", "Finanças", "Assistência", "RH", "DPO", "Compras", "Jurídico", "Marketing", "Outros"].map((opt) => (
+                        <SelectItem key={opt} value={opt}>{opt}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="role" className="text-sm font-bold text-gray-900 uppercase tracking-wider">Seu cargo</Label>
+                  <Select 
+                    onValueChange={(value) => setFormData({...formData, role: value})}
+                    value={formData.role}
+                  >
+                    <SelectTrigger className="h-14 bg-white border-gray-300 focus:border-brand-purple focus:ring-1 focus:ring-brand-purple/20 transition-all rounded-xl shadow-sm text-gray-600">
+                      <SelectValue placeholder="Selecione" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {["Analista", "Coordenador(a)", "Supervisor(a)", "Gerente", "Diretor(a)", "Superintendente", "C-Level", "Outros"].map((opt) => (
+                        <SelectItem key={opt} value={opt}>{opt}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* Email e Telefone */}
+                <div className="space-y-2">
+                  <Label htmlFor="email" className="text-sm font-bold text-gray-900 uppercase tracking-wider">Email Profissional</Label>
+                  <Input 
+                    id="email" 
+                    type="email"
+                    placeholder="Digite seu email profissional" 
+                    value={formData.email}
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    className="h-14 bg-white border-gray-300 focus:border-brand-purple focus:ring-1 focus:ring-brand-purple/20 transition-all rounded-xl shadow-sm placeholder:text-gray-400"
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="phone" className="text-sm font-bold text-gray-900 uppercase tracking-wider">Telefone</Label>
+                  <Input 
+                    id="phone" 
+                    type="tel"
+                    placeholder="Digite seu telefone" 
+                    value={formData.phone}
+                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                    className="h-14 bg-white border-gray-300 focus:border-brand-purple focus:ring-1 focus:ring-brand-purple/20 transition-all rounded-xl shadow-sm placeholder:text-gray-400"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="pt-4">
+                <Button 
+                  type="submit" 
+                  disabled={loading}
+                  className="w-full md:w-[145px] h-[48px] bg-brand-purple hover:bg-brand-purple/90 text-white font-bold rounded-xl text-[14px] transition-all shadow-lg shadow-brand-purple/20 active:scale-95 p-0"
+                >
+                  {loading ? "Enviando..." : "Solicitar demo"}
+                </Button>
+              </div>
+            </form>
+          </motion.div>
+        </div>
+      </div>
+    </section>
   );
 }

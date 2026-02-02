@@ -1,35 +1,8 @@
-import { ChevronUp } from "lucide-react";
 import { useScrollAnimations } from "@/hooks/useScrollAnimations";
 import { useEffect, useState } from "react";
 
 export function Footer() {
   useScrollAnimations();
-  const [showScrollTop, setShowScrollTop] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const footer = document.querySelector('footer');
-      if (footer) {
-        const footerRect = footer.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        
-        // Mostra o botão quando o footer estiver visível na tela
-        const isFooterVisible = footerRect.top < windowHeight;
-        setShowScrollTop(isFooterVisible);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Verifica imediatamente
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({ 
-      top: 0, 
-      behavior: 'smooth' 
-    });
-  };
 
   return (
     <footer className="bg-white border-t border-black/10 pt-48 pb-36 relative overflow-hidden">
@@ -61,22 +34,11 @@ export function Footer() {
             © 2026 InovaWeb Tecnologia. Todos os direitos reservados.
           </p>
           <div className="w-full md:w-auto flex md:justify-end gap-6 text-xs md:text-sm">
-            <span><a href="https://www.linkedin.com/company/inovawebtech/" target="_blank" rel="noopener noreferrer" className="text-black transition-colors hover:text-black">LinkedIn</a></span>
+            <span><a href="https://www.instagram.com/inovaweb.tech" target="_blank" rel="noopener noreferrer" className="text-black transition-colors hover:text-black">Instagram</a></span>
             <span><a href="/termos" className="text-black transition-colors hover:text-black">Termos de Uso</a></span>
           </div>
         </div>
       </div>
-
-      {/* Scroll to top button */}
-      {showScrollTop && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-6 right-6 flex items-center justify-center w-10 h-10 rounded-full bg-gradient-brand shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 z-50 opacity-90 hover:opacity-100"
-          aria-label="Voltar ao topo"
-        >
-          <ChevronUp className="h-5 w-5 text-white" />
-        </button>
-      )}
     </footer>
   );
 }

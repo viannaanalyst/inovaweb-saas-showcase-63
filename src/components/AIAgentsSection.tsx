@@ -42,44 +42,40 @@ export function AIAgentsSection() {
           </div>
 
           <div className="relative px-6 sm:px-10 lg:px-16 py-16 sm:py-20 text-center">
-            <div className="text-xs font-semibold uppercase tracking-[0.18em] text-[#6A11CB]">
+            <div className="text-xs font-bold uppercase tracking-[0.2em] text-brand-purple opacity-80">
               CRM Inteligente
             </div>
-            <h2 className="mt-3 text-4xl sm:text-5xl lg:text-6xl font-bold text-black">
-              O cérebro central do atendimento e das vendas
+            <h2 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-[1.1] tracking-tight">
+              O cérebro central do <br className="hidden sm:block" /> 
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple to-brand-blue">
+                atendimento e das vendas
+              </span>
             </h2>
-            <p className="mx-auto mt-4 max-w-4xl text-gray-800 text-base sm:text-lg">
+            <p className="mx-auto mt-6 max-w-3xl text-gray-600 text-base sm:text-lg leading-relaxed">
               Centralização de WhatsApp, leads e agendamentos. Automação inteligente de conversas. Qualificação e transferência para humano no momento certo. Controle total do funil e métricas.
             </p>
 
-            <div className="mx-auto mt-10 grid grid-cols-2 sm:grid-cols-4 gap-6">
+            <div className="mx-auto mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {features.map((f, i) => {
                 const Icon = f.icon;
                 return (
                   <motion.div
                     key={i}
-                    initial={{ opacity: 0, y: 15 }}
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.05 }}
-                    className="rounded-xl bg-white/70 backdrop-blur border border-white/50 shadow-sm p-6 flex flex-col items-center"
+                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                    className="rounded-[24px] bg-white/40 backdrop-blur-md border border-white/60 shadow-sm p-8 flex flex-col items-center group hover:bg-white/80 transition-all duration-500 hover:shadow-2xl hover:shadow-brand-purple/10 hover:-translate-y-2"
                   >
-                    <div className="w-12 h-12 rounded-full bg-white shadow-sm border border-gray-100/60 flex items-center justify-center">
-                      <Icon className="w-6 h-6" color={f.color} />
+                    <div className="w-16 h-16 rounded-2xl bg-white shadow-sm border border-gray-100 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 mb-6">
+                      <Icon className="w-7 h-7" color={f.color} />
                     </div>
-                    <div className="mt-4 font-semibold text-gray-900">{f.title}</div>
-                    <div className="mt-1 text-sm text-gray-700">{f.description}</div>
+                    <div className="font-bold text-gray-900 text-xl mb-3 tracking-tight">{f.title}</div>
+                    <div className="text-sm text-gray-500 leading-relaxed font-medium text-center">{f.description}</div>
                   </motion.div>
                 );
               })}
             </div>
-
-            <a
-              href="/crm"
-              className="mt-10 inline-flex items-center rounded-full bg-gradient-to-r from-[#6A11CB] to-[#2574FC] px-6 py-3 text-white font-medium shadow-sm hover:opacity-90 transition-opacity"
-            >
-              Conheça o CRM Inova Web
-            </a>
           </div>
         </div>
       </div>
