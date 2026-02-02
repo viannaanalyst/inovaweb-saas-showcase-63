@@ -24,18 +24,18 @@ export function Header() {
     <header 
       className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${
         isScrolled 
-          ? "bg-white/20 backdrop-blur-md py-3 shadow-sm" 
-          : "bg-transparent py-5"
+          ? "bg-white py-4 shadow-md border-b border-black/5" 
+          : "bg-transparent py-6"
       }`}
     >
-      <div className="max-w-desktop mx-auto">
+      <div className="max-w-desktop mx-auto px-6 sm:px-6 lg:px-10">
         <div className="flex items-center justify-between w-full">
           {/* Logo */}
           <div className="flex items-center flex-shrink-0 cursor-pointer" onClick={() => navigate('/')}>
             <img 
               src="/lovable-uploads/logo_light.png"
               alt="InovaWeb" 
-              className="h-10 sm:h-12 w-auto object-contain"
+              className="h-9 sm:h-12 w-auto object-contain transition-all duration-300"
             />
           </div>
           
@@ -48,25 +48,25 @@ export function Header() {
               }}
               className="text-black hover:text-brand-purple font-bold text-sm transition-colors duration-200"
             >
-              Home
+              Início
             </button>
+            <a
+              href="/#solucao"
+              className="text-black hover:text-brand-purple font-bold text-sm transition-colors duration-200"
+            >
+              Solução
+            </a>
+            <a
+              href="/#clinicas"
+              className="text-black hover:text-brand-purple font-bold text-sm transition-colors duration-200"
+            >
+              Para clínicas
+            </a>
             <a
               href="/#como-funciona"
               className="text-black hover:text-brand-purple font-bold text-sm transition-colors duration-200"
             >
-              Como Funciona
-            </a>
-            <a
-              href="/#sobre"
-              className="text-black hover:text-brand-purple font-bold text-sm transition-colors duration-200"
-            >
-              Sobre
-            </a>
-            <a
-              href="/#depoimentos"
-              className="text-black hover:text-brand-purple font-bold text-sm transition-colors duration-200"
-            >
-              Clientes
+              Como funciona
             </a>
             <a
               href="/#contato"

@@ -11,7 +11,7 @@ export function WhatsAppButton() {
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-[9999] flex items-center justify-center w-[48px] h-[48px] bg-[#25D366] text-white rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 group"
+      className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-[9998] flex items-center justify-center w-[48px] h-[48px] bg-[#25D366] text-white rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 group"
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       whileHover={{ scale: 1.1 }}

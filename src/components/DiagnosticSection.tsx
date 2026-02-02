@@ -1,32 +1,34 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { MessageSquare, Clock, TrendingDown, Users } from "lucide-react";
 
-export function DiagnosticSection() {
-  const problems = [
-    {
-      icon: MessageSquare,
-      title: "Mensagens sem resposta",
-      dotColor: "bg-red-400"
-    },
-    {
-      icon: TrendingDown,
-      title: "Leads pagos desperdiçados",
-      dotColor: "bg-orange-400"
-    },
-    {
-      icon: Clock,
-      title: "Atendimento fora do horário",
-      dotColor: "bg-blue-400"
-    },
-    {
-      icon: Users,
-      title: "Recepção sobrecarregada",
-      dotColor: "bg-purple-400"
-    }
-  ];
+const problems = [
+  {
+    icon: MessageSquare,
+    title: "Mensagens sem resposta",
+    dotColor: "bg-red-400"
+  },
+  {
+    icon: TrendingDown,
+    title: "Leads pagos desperdiçados",
+    dotColor: "bg-orange-400"
+  },
+  {
+    icon: Clock,
+    title: "Atendimento fora do horário",
+    dotColor: "bg-blue-400"
+  },
+  {
+    icon: Users,
+    title: "Recepção sobrecarregada",
+    dotColor: "bg-purple-400"
+  }
+];
 
+export function DiagnosticSection() {
   return (
-    <section className="w-full py-40 px-4 sm:px-6 lg:px-8 bg-[#FBFAF7] relative overflow-hidden">
+    <section id="clinicas" className="w-full py-24 md:py-40 px-4 sm:px-6 lg:px-8 bg-[#FBFAF7] relative overflow-hidden">
       {/* Sutil detalhe de fundo */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-gray-50/50 to-transparent pointer-events-none" />
       
@@ -99,10 +101,9 @@ export function DiagnosticSection() {
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
             >
-              Identifique os gargalos antes que eles se tornem prejuízo.
+              A InovaWeb resolve os principais gargalos que impedem sua clínica de crescer, automatizando o que é repetitivo e humanizando o que é decisivo.
             </motion.p>
           </motion.div>
-
         </div>
       </div>
     </section>

@@ -36,9 +36,9 @@ export function HowItWorksSection() {
   ];
 
   return (
-    <section id="como-funciona" className="py-48 px-4 sm:px-6 lg:px-8 bg-[#FAFAF8] relative overflow-hidden">
+    <section id="como-funciona" className="py-24 md:py-48 px-4 sm:px-6 lg:px-8 bg-[#FAFAF8] relative overflow-hidden">
       <div className="max-w-desktop mx-auto">
-        <div className="text-center mb-32">
+        <div className="text-center mb-16 md:mb-32">
           <motion.h2 
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight tracking-tight"
             initial={{ opacity: 0, y: 20 }}

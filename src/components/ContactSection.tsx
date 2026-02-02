@@ -71,7 +71,7 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contato" className="w-full py-32 px-4 sm:px-6 lg:px-8 bg-[#FAFAF8] relative overflow-hidden">
+    <section id="contato" className="w-full py-24 md:py-32 px-4 sm:px-6 lg:px-8 bg-[#FAFAF8] relative overflow-hidden">
       {/* Background Decor - Subtle Premium feel */}
       <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-[10%] right-[-5%] w-[500px] h-[500px] bg-brand-purple/5 rounded-full filter blur-[100px]"></div>

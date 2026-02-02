@@ -30,7 +30,7 @@ export function AIAgentsSection() {
   ];
 
   return (
-    <section className="w-full py-28 bg-[#FBFAF7]">
+    <section className="w-full py-20 md:py-28 bg-[#FBFAF7]">
       <div className="max-w-desktop mx-auto px-4 sm:px-6 lg:px-10">
         <div className="relative overflow-hidden rounded-[36px] border border-black/5 bg-white">
           <div className="absolute inset-0 w-full h-full pointer-events-none">
@@ -55,23 +55,23 @@ export function AIAgentsSection() {
               Centralização de WhatsApp, leads e agendamentos. Automação inteligente de conversas. Qualificação e transferência para humano no momento certo. Controle total do funil e métricas.
             </p>
 
-            <div className="mx-auto mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {features.map((f, i) => {
-                const Icon = f.icon;
+            <div className="mx-auto mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {features.map((feature, index) => {
+                const Icon = feature.icon;
                 return (
                   <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 20 }}
+                    key={feature.title}
+                    initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: i * 0.1 }}
-                    className="rounded-[24px] bg-white/40 backdrop-blur-md border border-white/60 shadow-sm p-8 flex flex-col items-center group hover:bg-white/80 transition-all duration-500 hover:shadow-2xl hover:shadow-brand-purple/10 hover:-translate-y-2"
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
+                    className="group relative p-8 rounded-[32px] bg-[#FAFAF8] border border-black/5 hover:border-brand-purple/20 transition-all duration-500 hover:shadow-[0_20px_40px_rgba(106,17,203,0.05)] flex flex-col items-center"
                   >
                     <div className="w-16 h-16 rounded-2xl bg-white shadow-sm border border-gray-100 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 mb-6">
-                      <Icon className="w-7 h-7" color={f.color} />
+                      <Icon className="w-7 h-7" color={feature.color} />
                     </div>
-                    <div className="font-bold text-gray-900 text-xl mb-3 tracking-tight">{f.title}</div>
-                    <div className="text-sm text-gray-500 leading-relaxed font-medium text-center">{f.description}</div>
+                    <div className="font-bold text-gray-900 text-xl mb-3 tracking-tight">{feature.title}</div>
+                    <div className="text-sm text-gray-500 leading-relaxed font-medium text-center">{feature.description}</div>
                   </motion.div>
                 );
               })}
