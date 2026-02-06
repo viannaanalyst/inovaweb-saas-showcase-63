@@ -101,12 +101,33 @@ const Qualificacao = () => {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      const response = await fetch("https://n8n-n8n.pqvcji.easypanel.host/webhook/form-qualificacao", {
+      const urlParams = new URLSearchParams(window.location.search);
+      
+      const payload = {
+        clinic_id: "6b92af13-91fa-4326-bc84-fa2e8b7979cf",
+        name: values.nome,
+        phone: values.whatsapp,
+        email: "qualificacao@inovaweb.com.br", // Valor padrão pois o form não pede email
+        // Dados adicionais do formulário de qualificação
+        empresa: values.empresa,
+        cargo: values.cargo,
+        tipo_clinica: values.tipoClinica,
+        atendimentos: values.atendimentosMensais,
+        // Parâmetros de rastreio
+        utm_source: urlParams.get('utm_source') || 'site_direto',
+        utm_campaign: urlParams.get('utm_campaign') || 'organico',
+        utm_medium: urlParams.get('utm_medium') || 'web',
+        utm_content: urlParams.get('utm_content') || 'formulario_qualificacao'
+      };
+
+      console.log("Enviando lead de qualificação para CRM:", payload);
+
+      const response = await fetch("https://xqsrnxtmobxsbnvakgfs.supabase.co/functions/v1/site-lead-webhook", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {

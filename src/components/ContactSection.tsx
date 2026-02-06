@@ -29,17 +29,17 @@ export function ContactSection() {
     
     const payload = {
       clinic_id: "6b92af13-91fa-4326-bc84-fa2e8b7979cf",
-      name: formData.firstName + ' ' + (formData.lastName || ''),
+      name: (formData.firstName + ' ' + (formData.lastName || '')).trim(),
       phone: formData.phone,
       email: formData.email,
-      area: formData.area,
-      cargo: formData.role,
       // Parâmetros de rastreio
       utm_source: urlParams.get('utm_source') || 'site_direto',
       utm_campaign: urlParams.get('utm_campaign') || 'organico',
       utm_medium: urlParams.get('utm_medium') || 'web',
       utm_content: urlParams.get('utm_content') || 'formulario_contato'
     };
+
+    console.log("Enviando lead para CRM:", payload);
 
     try {
       setLoading(true);

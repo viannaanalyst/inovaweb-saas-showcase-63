@@ -14,10 +14,42 @@ const Contato = () => {
     mensagem: ""
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Aqui você pode adicionar a lógica de envio do formulário
-    console.log("Formulário enviado:", formData);
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    const payload = {
+      clinic_id: "6b92af13-91fa-4326-bc84-fa2e8b7979cf",
+      name: formData.nome,
+      phone: "Não informado", // Este form não tem campo de telefone
+      email: formData.email,
+      mensagem: formData.mensagem,
+      // Parâmetros de rastreio
+      utm_source: urlParams.get('utm_source') || 'site_direto',
+      utm_campaign: urlParams.get('utm_campaign') || 'organico',
+      utm_medium: urlParams.get('utm_medium') || 'web',
+      utm_content: urlParams.get('utm_content') || 'formulario_contato_pagina'
+    };
+
+    console.log("Enviando lead de contato para CRM:", payload);
+
+    try {
+      const response = await fetch("https://xqsrnxtmobxsbnvakgfs.supabase.co/functions/v1/site-lead-webhook", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        alert("Mensagem enviada com sucesso!");
+        setFormData({ nome: "", email: "", mensagem: "" });
+      }
+    } catch (error) {
+      console.error("Erro ao enviar contato:", error);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
