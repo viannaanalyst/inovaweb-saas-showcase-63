@@ -20,14 +20,10 @@ export function ContactSection() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
-    // Log para depuração extrema
     console.log("=== INICIANDO SUBMISSÃO DO FORMULÁRIO ===");
-    console.log("Dados atuais:", formData);
     
     if (!formData.firstName || !formData.email || !formData.phone) {
-      const msg = "Erro: preencha Nome, Email e Telefone.";
-      console.error(msg);
-      alert(msg);
+      toast.error("Por favor, preencha os campos obrigatórios: Nome, Email e Telefone.");
       return;
     }
 
@@ -45,7 +41,6 @@ export function ContactSection() {
     };
 
     console.log("Payload preparado:", payload);
-    // alert("Enviando dados para o CRM: " + payload.name);
 
     try {
       setLoading(true);
@@ -60,18 +55,15 @@ export function ContactSection() {
         }
       );
 
-      console.log("Resposta do servidor status:", response.status);
-
       if (!response.ok) {
         const errorText = await response.text();
         console.error("Erro do servidor:", errorText);
-        throw new Error("Falha no envio: " + response.status);
+        throw new Error("Falha no envio");
       }
 
       console.log("Lead enviado com SUCESSO!");
-      alert("Sucesso! O lead foi enviado para o CRM.");
-      
       toast.success("Solicitação enviada! Entraremos em contato em breve.");
+      
       setFormData({
         firstName: "",
         lastName: "",
@@ -81,8 +73,7 @@ export function ContactSection() {
         phone: "",
       });
     } catch (error) {
-      console.error("Erro catastrófico no envio:", error);
-      alert("Erro ao enviar: " + (error instanceof Error ? error.message : "Erro desconhecido"));
+      console.error("Erro no envio:", error);
       toast.error("Erro ao enviar. Tente novamente mais tarde.");
     } finally {
       setLoading(false);

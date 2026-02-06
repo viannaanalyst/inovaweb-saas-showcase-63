@@ -19,7 +19,7 @@ const Contato = () => {
     console.log("=== SUBMETENDO PÁGINA DE CONTATO ===");
     
     if (!formData.nome || !formData.email) {
-      alert("Erro: Nome e Email são obrigatórios.");
+      toast.error("Nome e Email são obrigatórios.");
       return;
     }
     
@@ -37,8 +37,6 @@ const Contato = () => {
       utm_content: urlParams.get('utm_content') || 'formulario_contato_pagina'
     };
 
-    console.log("Payload Contato:", payload);
-
     try {
       const response = await fetch("https://xqsrnxtmobxsbnvakgfs.supabase.co/functions/v1/site-lead-webhook", {
         method: "POST",
@@ -48,19 +46,15 @@ const Contato = () => {
         body: JSON.stringify(payload),
       });
 
-      console.log("Status resposta Contato:", response.status);
-
       if (response.ok) {
-        alert("Sucesso! Mensagem enviada para o CRM.");
+        toast.success("Mensagem enviada com sucesso!");
         setFormData({ nome: "", email: "", mensagem: "" });
       } else {
-        const txt = await response.text();
-        console.error("Erro na resposta:", txt);
-        alert("Erro no servidor: " + response.status);
+        toast.error("Erro ao enviar mensagem.");
       }
     } catch (error) {
-      console.error("Erro de rede no Contato:", error);
-      alert("Erro de conexão. Verifique o console.");
+      console.error("Erro no envio:", error);
+      toast.error("Erro de conexão.");
     }
   };
 

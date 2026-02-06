@@ -41,7 +41,7 @@ const Consultor = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!isFormValid()) {
-      alert("Por favor, preencha todos os campos.");
+      toast.error("Por favor, preencha todos os campos.");
       return;
     }
 
@@ -74,8 +74,7 @@ const Consultor = () => {
       });
 
       if (response.ok) {
-        alert("Sucesso! Seus dados foram enviados.");
-        toast.success("Em breve um consultor da Inovaweb entrará em contato com você!");
+        toast.success("Sucesso! Em breve um consultor entrará em contato.");
         setFormData({
           nome: "",
           email: "",
@@ -85,11 +84,11 @@ const Consultor = () => {
           qtdContatos: "",
         });
       } else {
-        alert("Erro ao enviar: " + response.status);
+        toast.error("Erro ao enviar dados.");
       }
     } catch (error) {
       console.error("Erro no Consultor:", error);
-      alert("Erro de conexão.");
+      toast.error("Erro de conexão.");
     } finally {
       setIsSubmitting(false);
     }
