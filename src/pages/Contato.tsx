@@ -16,23 +16,28 @@ const Contato = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("=== SUBMETENDO PÁGINA DE CONTATO ===");
+    
+    if (!formData.nome || !formData.email) {
+      alert("Erro: Nome e Email são obrigatórios.");
+      return;
+    }
     
     const urlParams = new URLSearchParams(window.location.search);
     
     const payload = {
       clinic_id: "6b92af13-91fa-4326-bc84-fa2e8b7979cf",
       name: formData.nome,
-      phone: "Não informado", // Este form não tem campo de telefone
+      phone: "Não informado",
       email: formData.email,
       mensagem: formData.mensagem,
-      // Parâmetros de rastreio
       utm_source: urlParams.get('utm_source') || 'site_direto',
       utm_campaign: urlParams.get('utm_campaign') || 'organico',
       utm_medium: urlParams.get('utm_medium') || 'web',
       utm_content: urlParams.get('utm_content') || 'formulario_contato_pagina'
     };
 
-    console.log("Enviando lead de contato para CRM:", payload);
+    console.log("Payload Contato:", payload);
 
     try {
       const response = await fetch("https://xqsrnxtmobxsbnvakgfs.supabase.co/functions/v1/site-lead-webhook", {
@@ -43,12 +48,19 @@ const Contato = () => {
         body: JSON.stringify(payload),
       });
 
+      console.log("Status resposta Contato:", response.status);
+
       if (response.ok) {
-        alert("Mensagem enviada com sucesso!");
+        alert("Sucesso! Mensagem enviada para o CRM.");
         setFormData({ nome: "", email: "", mensagem: "" });
+      } else {
+        const txt = await response.text();
+        console.error("Erro na resposta:", txt);
+        alert("Erro no servidor: " + response.status);
       }
     } catch (error) {
-      console.error("Erro ao enviar contato:", error);
+      console.error("Erro de rede no Contato:", error);
+      alert("Erro de conexão. Verifique o console.");
     }
   };
 

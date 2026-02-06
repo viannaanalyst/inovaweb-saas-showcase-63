@@ -38,25 +38,61 @@ const Consultor = () => {
     );
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!isFormValid()) return;
+    if (!isFormValid()) {
+      alert("Por favor, preencha todos os campos.");
+      return;
+    }
 
     setIsSubmitting(true);
+    console.log("=== SUBMETENDO CONSULTOR ===");
 
-    // Simulating API call
-    setTimeout(() => {
-      setIsSubmitting(false);
-      toast.success("Em breve um consultor da Inovaweb entrará em contato com você!");
-      setFormData({
-        nome: "",
-        email: "",
-        whatsapp: "",
-        segmento: "",
-        qtdPessoas: "",
-        qtdContatos: "",
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    const payload = {
+      clinic_id: "6b92af13-91fa-4326-bc84-fa2e8b7979cf",
+      name: formData.nome,
+      phone: formData.whatsapp,
+      email: formData.email,
+      segmento: formData.segmento,
+      qtdPessoas: formData.qtdPessoas,
+      qtdContatos: formData.qtdContatos,
+      utm_source: urlParams.get('utm_source') || 'site_direto',
+      utm_campaign: urlParams.get('utm_campaign') || 'organico',
+      utm_medium: urlParams.get('utm_medium') || 'web',
+      utm_content: urlParams.get('utm_content') || 'formulario_consultor'
+    };
+
+    try {
+      const response = await fetch("https://xqsrnxtmobxsbnvakgfs.supabase.co/functions/v1/site-lead-webhook", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
       });
-    }, 1500);
+
+      if (response.ok) {
+        alert("Sucesso! Seus dados foram enviados.");
+        toast.success("Em breve um consultor da Inovaweb entrará em contato com você!");
+        setFormData({
+          nome: "",
+          email: "",
+          whatsapp: "",
+          segmento: "",
+          qtdPessoas: "",
+          qtdContatos: "",
+        });
+      } else {
+        alert("Erro ao enviar: " + response.status);
+      }
+    } catch (error) {
+      console.error("Erro no Consultor:", error);
+      alert("Erro de conexão.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
