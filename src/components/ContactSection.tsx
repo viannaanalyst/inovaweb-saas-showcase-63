@@ -25,21 +25,26 @@ export function ContactSection() {
       return;
     }
 
+    const urlParams = new URLSearchParams(window.location.search);
+    
     const payload = {
-      nome: formData.firstName,
-      sobrenome: formData.lastName,
+      clinic_id: "6b92af13-91fa-4326-bc84-fa2e8b7979cf",
+      name: formData.firstName + ' ' + (formData.lastName || ''),
+      phone: formData.phone,
+      email: formData.email,
       area: formData.area,
       cargo: formData.role,
-      email: formData.email,
-      telefone: formData.phone,
-      source: "site-demo-request",
-      timestamp: new Date().toISOString(),
+      // Parâmetros de rastreio
+      utm_source: urlParams.get('utm_source') || 'site_direto',
+      utm_campaign: urlParams.get('utm_campaign') || 'organico',
+      utm_medium: urlParams.get('utm_medium') || 'web',
+      utm_content: urlParams.get('utm_content') || 'formulario_contato'
     };
 
     try {
       setLoading(true);
       const response = await fetch(
-        "https://n8n-n8n.pqvcji.easypanel.host/webhook/form-lead",
+        "https://xqsrnxtmobxsbnvakgfs.supabase.co/functions/v1/site-lead-webhook",
         {
           method: "POST",
           headers: {

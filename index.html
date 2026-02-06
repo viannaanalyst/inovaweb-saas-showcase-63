@@ -22,5 +22,37 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      async function enviarLeadParaCRM(formData) {
+        // Captura as UTMs da URL automaticamente
+        const urlParams = new URLSearchParams(window.location.search);
+
+        const payload = {
+          clinic_id: "6b92af13-91fa-4326-bc84-fa2e8b7979cf", // ID da sua clínica InovaWeb
+          name: formData.nome + ' ' + (formData.sobrenome || ''),
+          phone: formData.telefone,
+          email: formData.email,
+          // Parâmetros de rastreio
+          utm_source: urlParams.get('utm_source') || 'site_direto',
+          utm_campaign: urlParams.get('utm_campaign') || 'organico',
+          utm_medium: urlParams.get('utm_medium') || 'web',
+          utm_content: urlParams.get('utm_content') || 'formulario_contato'
+        };
+
+        try {
+          const response = await fetch('https://xqsrnxtmobxsbnvakgfs.supabase.co/functions/v1/site-lead-webhook', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          if (response.ok) {
+            console.log('Lead enviado com sucesso para o CRM!');
+          }
+        } catch (error) {
+          console.error('Erro ao enviar lead:', error);
+        }
+      }
+    </script>
   </body>
 </html>
