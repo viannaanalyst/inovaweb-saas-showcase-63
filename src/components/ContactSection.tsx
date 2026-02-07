@@ -30,7 +30,7 @@ export function ContactSection() {
     const urlParams = new URLSearchParams(window.location.search);
     
     const payload = {
-      clinic_id: "6b92af13-91fa-4326-bc84-fa2e8b7979cf",
+      clinic_id: "96eaae2c-89a2-4071-9833-c7fb4138484d",
       name: (formData.firstName + ' ' + (formData.lastName || '')).trim(),
       phone: formData.phone,
       email: formData.email,
