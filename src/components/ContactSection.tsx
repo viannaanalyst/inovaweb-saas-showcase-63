@@ -57,10 +57,14 @@ export function ContactSection() {
 
       if (!response.ok) {
         const errorText = await response.text();
-        console.error("Erro do servidor:", errorText);
+        console.error("ERRO DETALHADO DO SERVIDOR:", errorText);
+        alert("Erro no servidor: " + errorText);
         throw new Error("Falha no envio");
       }
 
+      const responseData = await response.json();
+      console.log("RESPOSTA DO SERVIDOR (JSON):", responseData);
+      
       console.log("Lead enviado com SUCESSO!");
       toast.success("Solicitação enviada! Entraremos em contato em breve.");
       
