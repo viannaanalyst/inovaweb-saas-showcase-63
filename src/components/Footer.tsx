@@ -38,6 +38,7 @@ export function Footer() {
           <div className="flex justify-center gap-8 text-xs sm:text-sm font-medium">
             <a href="https://www.instagram.com/inovaweb.tech" target="_blank" rel="noopener noreferrer" className="text-black transition-all hover:text-brand-purple underline decoration-black decoration-1 underline-offset-[3px] hover:decoration-brand-purple">Instagram</a>
             <a href="/termos" className="text-black transition-all hover:text-brand-purple underline decoration-black decoration-1 underline-offset-[3px] hover:decoration-brand-purple">Termos de Uso</a>
+            <a href="/privacidade" className="text-black transition-all hover:text-brand-purple underline decoration-black decoration-1 underline-offset-[3px] hover:decoration-brand-purple">Política de Privacidade</a>
           </div>
           <p className="text-center font-sans text-[10px] sm:text-xs text-gray-500 uppercase tracking-wider">
             © 2026 InovaWeb Tecnologia. Todos os direitos reservados.
